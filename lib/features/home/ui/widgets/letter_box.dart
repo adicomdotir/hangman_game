@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hangman_game/features/home/ui/blocs/game_bloc.dart';
+import 'package:hangman_game/features/home/index.dart';
 
 class LetterBox extends StatelessWidget {
   const LetterBox({
@@ -20,10 +20,10 @@ class LetterBox extends StatelessWidget {
       padding: const EdgeInsets.all(4.0),
       child: InkWell(
         onTap: () {
-          if (context.read<GameBloc>().state.gameStatus == GameStatus.normal &&
+          if (context.read<HomeBloc>().state.gameStatus == GameStatus.normal &&
               model.isActive) {
             context
-                .read<GameBloc>()
+                .read<HomeBloc>()
                 .add(TapLetterEvent(letter: model.letter, letterIndex: idx));
           }
         },

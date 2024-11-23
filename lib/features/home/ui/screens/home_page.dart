@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hangman_game/features/home/ui/widgets/show_exit_popup.dart';
 
-import '../blocs/game_bloc.dart';
+import '../blocs/home_bloc.dart';
 import '../widgets/index.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,13 +21,18 @@ class _HomePageState extends State<HomePage> {
   }
 
   void calculateCorrectWord() {
-    context.read<GameBloc>().add(CalculateCorrectWordEvent());
+    context.read<HomeBloc>().add(CalculateCorrectWordEvent());
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GameBloc, GameState>(
+    return BlocConsumer<HomeBloc, HomeState>(
+      listener: (context, state) {
+        if (state.gameStatus == GameStatus.lose) {
+          showExitPopup(context);
+        }
+      },
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
@@ -60,17 +65,15 @@ class _HomePageState extends State<HomePage> {
                     onPressed: () {
                       if (state.gameStatus == GameStatus.win) {
                         context
-                            .read<GameBloc>()
-                            .add(ResetGameEvent(score: state.score));
+                            .read<HomeBloc>()
+                            .add(ResetEvent(score: state.score));
                       } else {
-                        context.read<GameBloc>().add(ResetGameEvent(score: 0));
+                        context.read<HomeBloc>().add(ResetEvent(score: 0));
                       }
                     },
-                    child: Text(
-                      state.gameStatus == GameStatus.lose
-                          ? 'RESET GAME'
-                          : 'NEXT WORD',
-                      style: const TextStyle(
+                    child: const Text(
+                      'NEXT WORD',
+                      style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.w300,
                       ),
@@ -130,7 +133,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  String _convertGameStatus(GameState state) {
+  String _convertGameStatus(HomeState state) {
     if (state.gameStatus == GameStatus.win) {
       return 'You Win';
     } else if (state.gameStatus == GameStatus.lose) {

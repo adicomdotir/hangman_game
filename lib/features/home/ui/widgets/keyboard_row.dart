@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hangman_game/features/home/ui/blocs/game_bloc.dart';
+import 'package:hangman_game/features/home/ui/blocs/home_bloc.dart';
 import 'package:hangman_game/features/home/ui/widgets/letter_box.dart';
 
 class KeyboardRow extends StatelessWidget {
@@ -15,7 +15,7 @@ class KeyboardRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final keyModels = context.read<GameBloc>().state.keyModels;
+    final keyModels = context.read<HomeBloc>().state.keyModels;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

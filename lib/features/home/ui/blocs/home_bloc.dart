@@ -2,20 +2,24 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hangman_game/data_source.dart';
+import 'package:hangman_game/features/home/index.dart';
 import 'package:hangman_game/words.dart';
+import 'package:injectable/injectable.dart';
 
-part 'game_event.dart';
-part 'game_state.dart';
+part 'home_event.dart';
+part 'home_state.dart';
 
-class GameBloc extends Bloc<GameEvent, GameState> {
-  GameBloc() : super(GameState.init(score: 0)) {
+@injectable
+class HomeBloc extends Bloc<HomeEvent, HomeState> {
+  HomeBloc({required this.addScoreUsecase}) : super(HomeState.init(score: 0)) {
     on<TapLetterEvent>(_tapLetterEvent);
 
     on<CalculateCorrectWordEvent>(_calculateCorrectWordEvent);
 
-    on<ResetGameEvent>(_resetGameEvent);
+    on<ResetEvent>(_resetGameEvent);
   }
+
+  final AddScoreUsecase addScoreUsecase;
 
   FutureOr<void> _tapLetterEvent(TapLetterEvent event, emit) {
     String letter = event.letter;
@@ -50,7 +54,8 @@ class GameBloc extends Bloc<GameEvent, GameState> {
       );
       if (_checkLose(state.word, state.mistakeCount)) {
         emit(state.copyWith(gameStatus: GameStatus.lose));
-        addScore(state.score);
+        // TODO: Catch Error
+        addScoreUsecase.call(state.score);
       }
     }
   }
@@ -91,9 +96,9 @@ class GameBloc extends Bloc<GameEvent, GameState> {
     return word.length <= mistakeCount;
   }
 
-  FutureOr<void> _resetGameEvent(ResetGameEvent event, emit) {
+  FutureOr<void> _resetGameEvent(ResetEvent event, emit) {
     emit(
-      GameState.init(score: event.score),
+      HomeState.init(score: event.score),
     );
     add(CalculateCorrectWordEvent());
   }

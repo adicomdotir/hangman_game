@@ -1,4 +1,4 @@
-part of 'game_bloc.dart';
+part of 'home_bloc.dart';
 
 enum GameStatus {
   normal,
@@ -6,8 +6,8 @@ enum GameStatus {
   lose,
 }
 
-class GameState {
-  factory GameState.init({required int score}) {
+class HomeState {
+  factory HomeState.init({required int score}) {
     int rnd = Random().nextInt(wordList.length);
     String word = 'word';
     try {
@@ -15,7 +15,7 @@ class GameState {
     } catch (e) {
       print(e.toString());
     }
-    return GameState(
+    return HomeState(
       word: word,
       correctWord: '',
       inCorrectWord: '',
@@ -26,7 +26,7 @@ class GameState {
     );
   }
 
-  GameState({
+  HomeState({
     required this.word,
     required this.correctWord,
     required this.inCorrectWord,
@@ -44,7 +44,7 @@ class GameState {
   final int score;
   final int mistakeCount;
 
-  GameState copyWith({
+  HomeState copyWith({
     String? correctWord,
     String? inCorrectWord,
     GameStatus? gameStatus,
@@ -52,7 +52,7 @@ class GameState {
     int? score,
     int? mistakeCount,
   }) {
-    return GameState(
+    return HomeState(
       word: word,
       correctWord: correctWord ?? this.correctWord,
       inCorrectWord: inCorrectWord ?? this.inCorrectWord,
@@ -62,27 +62,4 @@ class GameState {
       mistakeCount: mistakeCount ?? this.mistakeCount,
     );
   }
-}
-
-class KeyboardModel {
-  KeyboardModel({
-    required this.letter,
-    required this.isActive,
-  });
-
-  final String letter;
-  final bool isActive;
-
-  KeyboardModel copyWith({bool? isActive}) {
-    return KeyboardModel(letter: letter, isActive: isActive ?? this.isActive);
-  }
-}
-
-List<KeyboardModel> generateKeyboardList() {
-  String letters = 'abcdefghijklmnopqrstuvwxyz';
-
-  return List<KeyboardModel>.generate(
-    26,
-    (index) => KeyboardModel(letter: letters[index], isActive: true),
-  );
 }

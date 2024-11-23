@@ -25,7 +25,7 @@ class _LoginPageState extends State<LoginPage> {
     return BlocConsumer<LoginBloc, LoginState>(
       listener: (context, state) {
         if (state is LoginSucces) {
-          context.go(AppRoute.homePageRouteName);
+          context.go(AppRoute.mainMenuPageRouteName);
         }
         if (state is LoginError) {
           final snackBar = SnackBar(

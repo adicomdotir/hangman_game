@@ -1,9 +1,6 @@
+import 'package:dartz/dartz.dart';
+import 'package:hangman_game/core/error/failure.dart';
+
 abstract class HomeRepository {
-  Future<T> create<T>();
-
-  Future<T> read<T>();
-
-  Future<T> update<T>();
-
-  Future<T> delete<T>();
+  Future<Either<Failure, void>> addScore(int score);
 }
