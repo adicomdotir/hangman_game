@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hangman_game/core/route/route.dart';
+import 'package:hangman_game/core/router/route.dart';
 import 'package:hangman_game/main.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -26,7 +26,7 @@ class SplashPageState extends State<SplashPage> {
 
       if (mounted) {
         String route = session != null
-            ? AppRoute.homePageRouteName
+            ? AppRoute.mainMenuPageRouteName
             : AppRoute.loginPageRouteName;
         context.go(route);
       }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hangman_game/core/route/route.dart';
+import 'package:hangman_game/features/home/ui/widgets/show_exit_popup.dart';
 
 import '../blocs/game_bloc.dart';
 import '../widgets/index.dart';
@@ -33,20 +33,16 @@ class _HomePageState extends State<HomePage> {
           appBar: AppBar(
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
             title: const Text('Home Page'),
-            actions: [
-              IconButton(
-                onPressed: () {
-                  context.push(AppRoute.leaderboardPageRouteName);
-                },
-                icon: const Icon(Icons.report_gmailerrorred),
-              ),
-              IconButton(
-                onPressed: () {
-                  // signOut();
-                },
-                icon: const Icon(Icons.logout),
-              ),
-            ],
+            actions: const [],
+            leading: IconButton(
+              onPressed: () async {
+                final result = await showExitPopup(context);
+                if (result) {
+                  context.pop();
+                }
+              },
+              icon: const Icon(Icons.arrow_back),
+            ),
           ),
           body: Center(
             child: Column(

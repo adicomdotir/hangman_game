@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hangman_game/core/route/route.dart';
+import 'package:hangman_game/core/router/route.dart';
 import 'package:hangman_game/features/login/index.dart';
 
 class LoginPage extends StatefulWidget {
