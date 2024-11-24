@@ -1,5 +1,5 @@
-import 'package:hangman_game/main.dart';
 import 'package:injectable/injectable.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract class LoginRemoteDataSource {
   Future<String> signInEmailAndPassword(String email, String password);
@@ -8,9 +8,13 @@ abstract class LoginRemoteDataSource {
 
 @Injectable(as: LoginRemoteDataSource)
 class LoginRemoteDataSourceImpl extends LoginRemoteDataSource {
+  LoginRemoteDataSourceImpl({required this.supabase});
+
+  final Supabase supabase;
+
   @override
   Future<String> signInEmailAndPassword(String email, String password) async {
-    final response = await supabase.auth.signInWithPassword(
+    final response = await supabase.client.auth.signInWithPassword(
       email: email,
       password: password,
     );
@@ -25,7 +29,7 @@ class LoginRemoteDataSourceImpl extends LoginRemoteDataSource {
 
   @override
   Future<void> signOut() async {
-    await supabase.auth.signOut();
+    await supabase.client.auth.signOut();
     return;
   }
 }

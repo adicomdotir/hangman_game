@@ -7,9 +7,6 @@ import 'package:hangman_game/features/home/ui/blocs/home_bloc.dart';
 import 'package:hangman_game/features/login/index.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-// It's handy to then extract the Supabase client in a variable for later uses
-final supabase = Supabase.instance.client;
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 

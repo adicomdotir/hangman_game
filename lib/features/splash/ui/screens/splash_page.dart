@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hangman_game/core/di/injectable.dart';
 import 'package:hangman_game/core/router/route.dart';
-import 'package:hangman_game/main.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SplashPage extends StatefulWidget {
@@ -17,7 +17,7 @@ class SplashPageState extends State<SplashPage> {
     super.initState();
 
     Future.wait([
-      Future.value(supabase.auth.currentSession),
+      Future.value(getIt<Supabase>().client.auth.currentSession),
       Future.delayed(
         const Duration(milliseconds: 2000),
       ),
