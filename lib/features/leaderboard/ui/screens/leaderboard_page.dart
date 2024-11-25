@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hangman_game/data_source.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hangman_game/features/leaderboard/index.dart';
 
 class LeaderboardPage extends StatefulWidget {
   const LeaderboardPage({super.key});
@@ -9,17 +10,10 @@ class LeaderboardPage extends StatefulWidget {
 }
 
 class _LeaderboardPageState extends State<LeaderboardPage> {
-  List<Map<String, dynamic>> topScores = [];
-
   @override
   void initState() {
     super.initState();
-    fetchTopScores().then(
-      (value) {
-        topScores = value;
-        setState(() {});
-      },
-    );
+    BlocProvider.of<LeaderboardBloc>(context).add(LeaderboardEvent());
   }
 
   @override
@@ -29,18 +23,34 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('Leaderboard'),
       ),
-      body: ListView.builder(
-        itemCount: topScores.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(topScores[index]['user_email']),
-                Text(topScores[index]['score'].toString()),
-              ],
-            ),
-          );
+      body: BlocBuilder<LeaderboardBloc, LeaderboardState>(
+        builder: (context, state) {
+          if (state is LeaderboardLoaded) {
+            if (state.data.isEmpty) {
+              return const Center(
+                child: Text('No Data'),
+              );
+            }
+            return ListView.builder(
+              itemCount: state.data.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(state.data[index].userEmail),
+                      Text(state.data[index].score.toString()),
+                    ],
+                  ),
+                );
+              },
+            );
+          } else if (state is LeaderboardError) {
+            return Center(child: Text('error'.toUpperCase()));
+          } else if (state is LeaderboardLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          return const Placeholder();
         },
       ),
     );

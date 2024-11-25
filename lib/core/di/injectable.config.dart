@@ -21,6 +21,16 @@ import 'package:hangman_game/features/home/domain/usecases/add_score_usecase.dar
     as _i500;
 import 'package:hangman_game/features/home/index.dart' as _i262;
 import 'package:hangman_game/features/home/ui/blocs/home_bloc.dart' as _i999;
+import 'package:hangman_game/features/leaderboard/data/datasources/remote/leaderboard_remote_data_source.dart'
+    as _i25;
+import 'package:hangman_game/features/leaderboard/data/repositories/leaderboard_repository_impl.dart'
+    as _i216;
+import 'package:hangman_game/features/leaderboard/domain/index.dart' as _i617;
+import 'package:hangman_game/features/leaderboard/domain/usecases/fetch_top_scores_usecase.dart'
+    as _i540;
+import 'package:hangman_game/features/leaderboard/index.dart' as _i618;
+import 'package:hangman_game/features/leaderboard/ui/blocs/leaderboard_bloc.dart'
+    as _i1065;
 import 'package:hangman_game/features/login/data/datasources/remote/login_remote_data_source.dart'
     as _i358;
 import 'package:hangman_game/features/login/data/repositories/login_repository_impl.dart'
@@ -58,6 +68,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i454.Supabase>(() => supabaseModule.supabase());
     gh.factory<_i358.LoginRemoteDataSource>(
         () => _i358.LoginRemoteDataSourceImpl(supabase: gh<_i454.Supabase>()));
+    gh.factory<_i25.LeaderboardRemoteDataSource>(() =>
+        _i25.LeaderboardRemoteDataSourceImpl(supabase: gh<_i454.Supabase>()));
     gh.factory<_i1018.HomeRemoteDataSource>(
         () => _i1018.HomeRemoteDataSourceImpl(supabase: gh<_i454.Supabase>()));
     gh.factory<_i700.LoginRepository>(() => _i245.LoginRepositoryImpl(
@@ -68,14 +80,22 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i693.SubmitLoginUsecase(gh<_i848.LoginRepository>()));
     gh.factory<_i749.HomeRepository>(() => _i160.HomeRepositoryImpl(
         homeRemoteDataSource: gh<_i1018.HomeRemoteDataSource>()));
+    gh.factory<_i617.LeaderboardRepository>(() =>
+        _i216.LeaderboardRepositoryImpl(
+            leaderboardRemoteDataSource:
+                gh<_i25.LeaderboardRemoteDataSource>()));
     gh.factory<_i192.MainMenuRepository>(() => _i862.MainMenuRepositoryImpl(
         mainMenuRemoteDataSource: gh<_i192.MainMenuRemoteDataSource>()));
+    gh.factory<_i540.FetchTopScoresUsecase>(
+        () => _i540.FetchTopScoresUsecase(gh<_i618.LeaderboardRepository>()));
     gh.factory<_i500.AddScoreUsecase>(
         () => _i500.AddScoreUsecase(gh<_i232.HomeRepository>()));
     gh.factory<_i994.LogoutUsecase>(
         () => _i994.LogoutUsecase(gh<_i192.MainMenuRepository>()));
     gh.factory<_i999.HomeBloc>(
         () => _i999.HomeBloc(addScoreUsecase: gh<_i262.AddScoreUsecase>()));
+    gh.factory<_i1065.LeaderboardBloc>(() => _i1065.LeaderboardBloc(
+        fetchTopScoresUsecase: gh<_i618.FetchTopScoresUsecase>()));
     gh.factory<_i865.LoginBloc>(() =>
         _i865.LoginBloc(submitLoginUsecase: gh<_i700.SubmitLoginUsecase>()));
     gh.factory<_i607.MainMenuBloc>(
