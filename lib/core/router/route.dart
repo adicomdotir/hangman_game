@@ -1,8 +1,10 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hangman_game/core/di/injectable.dart';
 import 'package:hangman_game/features/home/ui/screens/home_page.dart';
 import 'package:hangman_game/features/leaderboard/ui/screens/leaderboard_page.dart';
 import 'package:hangman_game/features/login/ui/screens/login_page.dart';
-import 'package:hangman_game/features/main_menu/ui/screens/main_menu_page.dart';
+import 'package:hangman_game/features/main_menu/index.dart';
 import 'package:hangman_game/features/splash/index.dart';
 
 class AppRoute {
@@ -37,7 +39,10 @@ final router = GoRouter(
     ),
     GoRoute(
       path: AppRoute.mainMenuPageRouteName,
-      builder: (context, state) => const MainMenuPage(),
+      builder: (context, state) => BlocProvider(
+        create: (context) => getIt<MainMenuBloc>(),
+        child: const MainMenuPage(),
+      ),
     ),
   ],
 );

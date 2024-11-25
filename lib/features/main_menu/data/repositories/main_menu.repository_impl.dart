@@ -1,31 +1,21 @@
+import 'package:dartz/dartz.dart';
+import 'package:hangman_game/core/error/failure.dart';
+import 'package:hangman_game/features/main_menu/index.dart';
+import 'package:injectable/injectable.dart';
 
-		import 'package:hangman_game/features/main_menu/domain/index.dart';
+@Injectable(as: MainMenuRepository)
+class MainMenuRepositoryImpl extends MainMenuRepository {
+  MainMenuRepositoryImpl({required this.mainMenuRemoteDataSource});
 
+  final MainMenuRemoteDataSource mainMenuRemoteDataSource;
 
-		class MainMenuRepositoryImpl extends MainMenuRepository {
-
-			@override
-			Future<T> create<T>() async {
-			// TODO: implement create
-			throw UnimplementedError();
-			}
-
-			@override
-			Future<T> read<T>() async {
-			// TODO: implement read
-			throw UnimplementedError();
-			}
-
-			@override
-			Future<T> update<T>() async {
-			// TODO: implement update
-			throw UnimplementedError();
-			}
-
-			@override
-			Future<T> delete<T>() async {
-			// TODO: implement delete
-			throw UnimplementedError();
-			}
-		  
-		}
+  @override
+  Future<Either<Failure, bool>> logout() async {
+    try {
+      await mainMenuRemoteDataSource.logout();
+      return const Right(true);
+    } catch (e) {
+      return Left(ServerFailure());
+    }
+  }
+}

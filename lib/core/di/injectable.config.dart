@@ -31,6 +31,15 @@ import 'package:hangman_game/features/login/domain/usecases/submit_login_usecase
     as _i693;
 import 'package:hangman_game/features/login/index.dart' as _i700;
 import 'package:hangman_game/features/login/ui/blocs/login_bloc.dart' as _i865;
+import 'package:hangman_game/features/main_menu/data/datasources/remote/main_menu_remote_data_source.dart'
+    as _i804;
+import 'package:hangman_game/features/main_menu/data/repositories/main_menu.repository_impl.dart'
+    as _i862;
+import 'package:hangman_game/features/main_menu/domain/usecases/logout_usecase.dart'
+    as _i994;
+import 'package:hangman_game/features/main_menu/index.dart' as _i192;
+import 'package:hangman_game/features/main_menu/ui/blocs/main_menu_bloc.dart'
+    as _i607;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:supabase_flutter/supabase_flutter.dart' as _i454;
 
@@ -53,16 +62,24 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1018.HomeRemoteDataSourceImpl(supabase: gh<_i454.Supabase>()));
     gh.factory<_i700.LoginRepository>(() => _i245.LoginRepositoryImpl(
         remoteDataSource: gh<_i700.LoginRemoteDataSource>()));
+    gh.factory<_i804.MainMenuRemoteDataSource>(() =>
+        _i804.MainMenuRemoteDataSourceImpl(supabase: gh<_i454.Supabase>()));
     gh.factory<_i693.SubmitLoginUsecase>(
         () => _i693.SubmitLoginUsecase(gh<_i848.LoginRepository>()));
     gh.factory<_i749.HomeRepository>(() => _i160.HomeRepositoryImpl(
         homeRemoteDataSource: gh<_i1018.HomeRemoteDataSource>()));
+    gh.factory<_i192.MainMenuRepository>(() => _i862.MainMenuRepositoryImpl(
+        mainMenuRemoteDataSource: gh<_i192.MainMenuRemoteDataSource>()));
     gh.factory<_i500.AddScoreUsecase>(
         () => _i500.AddScoreUsecase(gh<_i232.HomeRepository>()));
+    gh.factory<_i994.LogoutUsecase>(
+        () => _i994.LogoutUsecase(gh<_i192.MainMenuRepository>()));
     gh.factory<_i999.HomeBloc>(
         () => _i999.HomeBloc(addScoreUsecase: gh<_i262.AddScoreUsecase>()));
     gh.factory<_i865.LoginBloc>(() =>
         _i865.LoginBloc(submitLoginUsecase: gh<_i700.SubmitLoginUsecase>()));
+    gh.factory<_i607.MainMenuBloc>(
+        () => _i607.MainMenuBloc(logoutUsecase: gh<_i192.LogoutUsecase>()));
     return this;
   }
 }
