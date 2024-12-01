@@ -9,14 +9,14 @@ enum GameStatus {
 class HomeState {
   factory HomeState.init({required int score}) {
     int rnd = Random().nextInt(wordList.length);
-    String word = 'word';
+    WordEntity? word;
     try {
-      word = wordList[rnd]['word'];
+      word = wordList[rnd];
     } catch (e) {
       print(e.toString());
     }
     return HomeState(
-      word: word,
+      word: word!,
       correctWord: '',
       inCorrectWord: '',
       keyModels: generateKeyboardList(),
@@ -36,7 +36,7 @@ class HomeState {
     required this.mistakeCount,
   });
 
-  final String word;
+  final WordEntity word;
   final String correctWord;
   final String inCorrectWord;
   final GameStatus gameStatus;

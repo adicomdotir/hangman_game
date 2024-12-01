@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hangman_game/features/home/index.dart';
+import 'package:hangman_game/features/main_menu/domain/entities/word_entity.dart';
 import 'package:hangman_game/words.dart';
 import 'package:injectable/injectable.dart';
 
@@ -27,20 +28,21 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       return km.letter == event.letter ? km.copyWith(isActive: false) : km;
     }).toList();
 
-    if (_letterExist(letter, state.word)) {
+    if (_letterExist(letter, state.word.word)) {
       String newCorrectWord =
-          _replaceLetter(letter, state.word, state.correctWord);
+          _replaceLetter(letter, state.word.word, state.correctWord);
       emit(
         state.copyWith(
           correctWord: newCorrectWord,
           keyModels: updatedKeyboardModelList,
         ),
       );
-      if (_checkWin(state.word, state.correctWord)) {
+      if (_checkWin(state.word.word, state.correctWord)) {
         emit(
           state.copyWith(
             gameStatus: GameStatus.win,
-            score: state.score + 10,
+            score:
+                state.score + ((int.tryParse(state.word.bookLevel) ?? 1) * 10),
           ),
         );
       }
@@ -52,7 +54,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           mistakeCount: state.mistakeCount + 1,
         ),
       );
-      if (_checkLose(state.word, state.mistakeCount)) {
+      if (_checkLose(state.word.word, state.mistakeCount)) {
         emit(state.copyWith(gameStatus: GameStatus.lose));
         // TODO: Catch Error
         addScoreUsecase.call(state.score);
@@ -65,8 +67,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   FutureOr<void> _calculateCorrectWordEvent(event, emit) {
-    final newCorrectWord = state.word.split('').map((letter) => '_').join('');
-    final newInCorrectWord = state.word.split('').map((letter) => '_').join('');
+    final newCorrectWord =
+        state.word.word.split('').map((letter) => '_').join('');
+    final newInCorrectWord =
+        state.word.word.split('').map((letter) => '_').join('');
     emit(
       state.copyWith(
         correctWord: newCorrectWord,
