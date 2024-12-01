@@ -44,7 +44,7 @@ final router = GoRouter(
       path: AppRoute.mainMenuPageRouteName,
       builder: (context, state) => BlocProvider(
         create: (context) => getIt<MainMenuBloc>(),
-        child: const MainMenuPage(),
+        child: MainMenuPage(),
       ),
     ),
   ],

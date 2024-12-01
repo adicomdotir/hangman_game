@@ -43,8 +43,10 @@ import 'package:hangman_game/features/login/index.dart' as _i700;
 import 'package:hangman_game/features/login/ui/blocs/login_bloc.dart' as _i865;
 import 'package:hangman_game/features/main_menu/data/datasources/remote/main_menu_remote_data_source.dart'
     as _i804;
-import 'package:hangman_game/features/main_menu/data/repositories/main_menu.repository_impl.dart'
-    as _i862;
+import 'package:hangman_game/features/main_menu/data/repositories/main_menu_repository_impl.dart'
+    as _i1072;
+import 'package:hangman_game/features/main_menu/domain/usecases/get_words_usecase%20.dart'
+    as _i981;
 import 'package:hangman_game/features/main_menu/domain/usecases/logout_usecase.dart'
     as _i994;
 import 'package:hangman_game/features/main_menu/index.dart' as _i192;
@@ -84,22 +86,26 @@ extension GetItInjectableX on _i174.GetIt {
         _i216.LeaderboardRepositoryImpl(
             leaderboardRemoteDataSource:
                 gh<_i25.LeaderboardRemoteDataSource>()));
-    gh.factory<_i192.MainMenuRepository>(() => _i862.MainMenuRepositoryImpl(
-        mainMenuRemoteDataSource: gh<_i192.MainMenuRemoteDataSource>()));
     gh.factory<_i540.FetchTopScoresUsecase>(
         () => _i540.FetchTopScoresUsecase(gh<_i618.LeaderboardRepository>()));
     gh.factory<_i500.AddScoreUsecase>(
         () => _i500.AddScoreUsecase(gh<_i232.HomeRepository>()));
-    gh.factory<_i994.LogoutUsecase>(
-        () => _i994.LogoutUsecase(gh<_i192.MainMenuRepository>()));
+    gh.factory<_i192.MainMenuRepository>(() => _i1072.MainMenuRepositoryImpl(
+        mainMenuRemoteDataSource: gh<_i192.MainMenuRemoteDataSource>()));
     gh.factory<_i999.HomeBloc>(
         () => _i999.HomeBloc(addScoreUsecase: gh<_i262.AddScoreUsecase>()));
     gh.factory<_i1065.LeaderboardBloc>(() => _i1065.LeaderboardBloc(
         fetchTopScoresUsecase: gh<_i618.FetchTopScoresUsecase>()));
     gh.factory<_i865.LoginBloc>(() =>
         _i865.LoginBloc(submitLoginUsecase: gh<_i700.SubmitLoginUsecase>()));
-    gh.factory<_i607.MainMenuBloc>(
-        () => _i607.MainMenuBloc(logoutUsecase: gh<_i192.LogoutUsecase>()));
+    gh.factory<_i981.GetWordsUsecase>(
+        () => _i981.GetWordsUsecase(gh<_i192.MainMenuRepository>()));
+    gh.factory<_i994.LogoutUsecase>(
+        () => _i994.LogoutUsecase(gh<_i192.MainMenuRepository>()));
+    gh.factory<_i607.MainMenuBloc>(() => _i607.MainMenuBloc(
+          logoutUsecase: gh<_i192.LogoutUsecase>(),
+          getWordsUsecase: gh<_i981.GetWordsUsecase>(),
+        ));
     return this;
   }
 }
