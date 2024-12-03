@@ -16,23 +16,23 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
     final user = supabase.client.auth.currentUser;
 
     if (user != null) {
-      var response = await supabase.client
+      final fetchUserScoreResponse = await supabase.client
           .from('leaderboard')
           .select()
           .eq('user_email', user.email ?? '');
 
+      final oldScore = fetchUserScoreResponse.first['score'];
+
       final body = {
         'user_email': user.email,
-        'score': score,
+        'score': score > oldScore ? score : oldScore,
+        'last_score': score,
       };
-      if (response.isNotEmpty) {
-        body['id'] = response.first['id'];
+      if (fetchUserScoreResponse.isNotEmpty) {
+        body['id'] = fetchUserScoreResponse.first['id'];
       }
 
-      response = await supabase.client
-          .from('leaderboard')
-          .upsert(body)
-          .eq('user_email', user.email ?? '');
+      await supabase.client.from('leaderboard').upsert(body);
 
       // if (response.error != null) {
       //   // Handle error
