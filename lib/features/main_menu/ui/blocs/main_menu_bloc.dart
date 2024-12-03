@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hangman_game/features/main_menu/domain/entities/word_entity.dart';
-import 'package:hangman_game/features/main_menu/domain/usecases/get_words_usecase%20.dart';
+import 'package:hangman_game/features/main_menu/domain/usecases/get_words_usecase.dart';
 import 'package:hangman_game/features/main_menu/index.dart';
 import 'package:injectable/injectable.dart';
 

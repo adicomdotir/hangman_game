@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hangman_game/features/home/index.dart';
 import 'package:hangman_game/features/main_menu/domain/entities/word_entity.dart';

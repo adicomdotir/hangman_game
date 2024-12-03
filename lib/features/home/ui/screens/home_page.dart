@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hangman_game/core/router/route.dart';
 import 'package:hangman_game/features/home/ui/widgets/show_exit_popup.dart';
+import 'package:hangman_game/features/home/ui/widgets/show_menu_dialog.dart';
 
 import '../blocs/home_bloc.dart';
 import '../widgets/index.dart';
@@ -30,7 +32,17 @@ class _HomePageState extends State<HomePage> {
     return BlocConsumer<HomeBloc, HomeState>(
       listener: (context, state) {
         if (state.gameStatus == GameStatus.lose) {
-          showExitPopup(context);
+          showMenuDialog(context).then(
+            (value) {
+              if (context.mounted) {
+                if (value == MenuDialogResponse.back) {
+                  context.go(AppRoute.mainMenuPageRouteName);
+                } else if (value == MenuDialogResponse.reset) {
+                  context.read<HomeBloc>().add(ResetEvent(score: 0));
+                }
+              }
+            },
+          );
         }
       },
       builder: (context, state) {
@@ -42,8 +54,8 @@ class _HomePageState extends State<HomePage> {
             leading: IconButton(
               onPressed: () async {
                 final result = await showExitPopup(context);
-                if (result) {
-                  context.pop();
+                if (result && context.mounted) {
+                  context.go(AppRoute.mainMenuPageRouteName);
                 }
               },
               icon: const Icon(Icons.arrow_back),

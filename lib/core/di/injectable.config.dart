@@ -45,7 +45,7 @@ import 'package:hangman_game/features/main_menu/data/datasources/remote/main_men
     as _i804;
 import 'package:hangman_game/features/main_menu/data/repositories/main_menu_repository_impl.dart'
     as _i1072;
-import 'package:hangman_game/features/main_menu/domain/usecases/get_words_usecase%20.dart'
+import 'package:hangman_game/features/main_menu/domain/usecases/get_words_usecase.dart'
     as _i981;
 import 'package:hangman_game/features/main_menu/domain/usecases/logout_usecase.dart'
     as _i994;

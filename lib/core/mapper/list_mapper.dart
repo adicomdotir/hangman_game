@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/widgets.dart';
+
 // Generic mapper function
 List<T> mapJsonArrayToList<T>(
   String jsonString,
@@ -50,6 +52,6 @@ void main() {
 
   // Print the users
   for (var user in userList) {
-    print(user);
+    debugPrint(user.toString());
   }
 }

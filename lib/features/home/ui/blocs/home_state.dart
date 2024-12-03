@@ -13,7 +13,7 @@ class HomeState {
     try {
       word = wordList[rnd];
     } catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
     }
     return HomeState(
       word: word!,
