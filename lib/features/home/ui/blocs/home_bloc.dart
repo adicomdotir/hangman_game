@@ -13,12 +13,15 @@ part 'home_state.dart';
 
 @injectable
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  HomeBloc({required this.addScoreUsecase}) : super(HomeState.init(score: 0)) {
+  HomeBloc({required this.addScoreUsecase})
+      : super(HomeState.init(score: 100)) {
     on<TapLetterEvent>(_tapLetterEvent);
 
     on<CalculateCorrectWordEvent>(_calculateCorrectWordEvent);
 
     on<ResetEvent>(_resetGameEvent);
+
+    on<ShowWordTypeEvent>(_showWordTypeEvent);
   }
 
   final AddScoreUsecase addScoreUsecase;
@@ -106,5 +109,19 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       HomeState.init(score: event.score),
     );
     add(CalculateCorrectWordEvent());
+  }
+
+  FutureOr<void> _showWordTypeEvent(
+    ShowWordTypeEvent event,
+    Emitter<HomeState> emit,
+  ) {
+    if (state.score > 5) {
+      emit(
+        state.copyWith(
+          wordHelpState: state.wordHelpState.copyWith(showWordType: true),
+          score: state.score - 5,
+        ),
+      );
+    }
   }
 }

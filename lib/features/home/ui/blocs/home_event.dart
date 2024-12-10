@@ -16,3 +16,5 @@ class ResetEvent extends HomeEvent {
 
   final int score;
 }
+
+class ShowWordTypeEvent extends HomeEvent {}

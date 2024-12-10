@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:hangman_game/features/main_menu/data/models/word_type_model.dart';
 import 'package:hangman_game/features/main_menu/domain/entities/word_entity.dart';
 
 class WordModel extends WordEntity {
@@ -10,6 +11,8 @@ class WordModel extends WordEntity {
       bookLevel: map['book_level'] as String,
       bookLesson: map['book_lesson'] as String,
       typeId: map['type_id'].toInt() as int,
+      wordTypeEntity:
+          WordTypeModel.fromMap(map['word_types'] as Map<String, dynamic>),
     );
   }
 
@@ -21,6 +24,7 @@ class WordModel extends WordEntity {
     required super.bookLevel,
     required super.bookLesson,
     required super.typeId,
+    required super.wordTypeEntity,
   });
 
   Map<String, dynamic> toMap() {
@@ -66,5 +70,6 @@ class WordModel extends WordEntity {
         bookLevel: bookLevel,
         bookLesson: bookLesson,
         typeId: typeId,
+        wordTypeEntity: wordTypeEntity,
       );
 }

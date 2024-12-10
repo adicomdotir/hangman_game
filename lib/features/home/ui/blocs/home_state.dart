@@ -6,6 +6,26 @@ enum GameStatus {
   lose,
 }
 
+class WordHelpState {
+  WordHelpState({required this.showWordType, required this.showMeaning});
+
+  factory WordHelpState.empty() =>
+      WordHelpState(showWordType: false, showMeaning: false);
+
+  final bool showMeaning;
+  final bool showWordType;
+
+  WordHelpState copyWith({
+    bool? showMeaning,
+    bool? showWordType,
+  }) {
+    return WordHelpState(
+      showMeaning: showMeaning ?? this.showMeaning,
+      showWordType: showWordType ?? this.showWordType,
+    );
+  }
+}
+
 class HomeState {
   factory HomeState.init({required int score}) {
     int rnd = Random().nextInt(wordList.length);
@@ -23,6 +43,7 @@ class HomeState {
       gameStatus: GameStatus.normal,
       score: score,
       mistakeCount: 0,
+      wordHelpState: WordHelpState.empty(),
     );
   }
 
@@ -34,6 +55,7 @@ class HomeState {
     required this.gameStatus,
     required this.score,
     required this.mistakeCount,
+    required this.wordHelpState,
   });
 
   final WordEntity word;
@@ -43,6 +65,7 @@ class HomeState {
   final List<KeyboardModel> keyModels;
   final int score;
   final int mistakeCount;
+  final WordHelpState wordHelpState;
 
   HomeState copyWith({
     String? correctWord,
@@ -51,6 +74,7 @@ class HomeState {
     List<KeyboardModel>? keyModels,
     int? score,
     int? mistakeCount,
+    WordHelpState? wordHelpState,
   }) {
     return HomeState(
       word: word,
@@ -60,6 +84,7 @@ class HomeState {
       keyModels: keyModels ?? this.keyModels,
       score: score ?? this.score,
       mistakeCount: mistakeCount ?? this.mistakeCount,
+      wordHelpState: wordHelpState ?? this.wordHelpState,
     );
   }
 }

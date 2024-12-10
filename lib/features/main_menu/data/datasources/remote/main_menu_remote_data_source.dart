@@ -21,7 +21,16 @@ class MainMenuRemoteDataSourceImpl extends MainMenuRemoteDataSource {
 
   @override
   Future<List<WordModel>> getWords() async {
-    final response = await supabase.client.from('words').select();
+    final response = await supabase.client.from('words').select('''
+      *,
+      word_types (
+        id,
+        name,
+        shord_name
+      )
+    ''');
+
+    print(response);
 
     return response.map((obj) => WordModel.fromMap(obj)).toList();
   }
