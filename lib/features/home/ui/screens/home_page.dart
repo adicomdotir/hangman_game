@@ -19,12 +19,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
-    calculateCorrectWord();
+    _resetGame();
     super.initState();
   }
 
-  void calculateCorrectWord() {
-    context.read<HomeBloc>().add(CalculateCorrectWordEvent());
+  void _resetGame() {
+    context.read<HomeBloc>().add(ResetEvent(score: 0));
     setState(() {});
   }
 
