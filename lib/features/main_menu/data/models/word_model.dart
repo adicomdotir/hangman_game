@@ -13,6 +13,7 @@ class WordModel extends WordEntity {
       typeId: map['type_id'].toInt() as int,
       wordTypeEntity:
           WordTypeModel.fromMap(map['word_types'] as Map<String, dynamic>),
+      mean: map['mean'] as String,
     );
   }
 
@@ -25,6 +26,7 @@ class WordModel extends WordEntity {
     required super.bookLesson,
     required super.typeId,
     required super.wordTypeEntity,
+    required super.mean,
   });
 
   Map<String, dynamic> toMap() {
@@ -71,5 +73,6 @@ class WordModel extends WordEntity {
         bookLesson: bookLesson,
         typeId: typeId,
         wordTypeEntity: wordTypeEntity,
+        mean: mean,
       );
 }

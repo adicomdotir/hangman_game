@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _resetGame() {
-    context.read<HomeBloc>().add(ResetEvent(score: 0));
+    context.read<HomeBloc>().add(ResetEvent(score: 100));
     setState(() {});
   }
 
@@ -127,7 +127,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Text(
-                state.wordHelpState.showMeaning ? 'Meaning' : '',
+                state.wordHelpState.showMeaning ? state.word.mean : '',
                 style: const TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.w500,

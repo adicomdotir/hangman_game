@@ -8,6 +8,7 @@ class WordEntity {
     required this.bookLesson,
     required this.typeId,
     required this.wordTypeEntity,
+    required this.mean,
   });
   final int id;
   final String word;
@@ -15,6 +16,7 @@ class WordEntity {
   final String bookLesson;
   final int typeId;
   final WordTypeEntity wordTypeEntity;
+  final String mean;
 
   WordEntity copyWith({
     int? id,
@@ -23,6 +25,7 @@ class WordEntity {
     String? bookLesson,
     int? typeId,
     WordTypeEntity? wordTypeEntity,
+    String? mean,
   }) {
     return WordEntity(
       id: id ?? this.id,
@@ -31,6 +34,7 @@ class WordEntity {
       bookLesson: bookLesson ?? this.bookLesson,
       typeId: typeId ?? this.typeId,
       wordTypeEntity: wordTypeEntity ?? this.wordTypeEntity,
+      mean: mean ?? this.mean,
     );
   }
 }
