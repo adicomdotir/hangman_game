@@ -51,6 +51,9 @@ class _MainMenuPageState extends State<MainMenuPage> {
           body: _body(context, state),
         );
       },
+      buildWhen: (previous, current) {
+        return current is! GetWordsSuccess;
+      },
     );
   }
 
