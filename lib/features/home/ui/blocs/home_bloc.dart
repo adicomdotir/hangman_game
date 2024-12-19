@@ -22,6 +22,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<ResetEvent>(_resetGameEvent);
 
     on<ShowWordTypeEvent>(_showWordTypeEvent);
+
+    on<ShowWordMeanEvent>(_showWordMeanEvent);
+
+    on<ShowLetterEvent>(_showLetterEvent);
   }
 
   final AddScoreUsecase addScoreUsecase;
@@ -122,6 +126,51 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           score: state.score - 5,
         ),
       );
+    }
+  }
+
+  FutureOr<void> _showWordMeanEvent(
+    ShowWordMeanEvent event,
+    Emitter<HomeState> emit,
+  ) {
+    if (state.score > 15) {
+      emit(
+        state.copyWith(
+          wordHelpState: state.wordHelpState.copyWith(showMeaning: true),
+          score: state.score - 15,
+        ),
+      );
+    }
+  }
+
+  FutureOr<void> _showLetterEvent(
+    ShowLetterEvent event,
+    Emitter<HomeState> emit,
+  ) {
+    if (state.score > 10) {
+      final correctWordArray = state.correctWord.split('');
+      for (var idx = 0; idx < correctWordArray.length; idx++) {
+        final letter = correctWordArray[idx];
+        if (letter == '_') {
+          correctWordArray[idx] = state.word.word.substring(idx, idx + 1);
+          emit(
+            state.copyWith(
+              correctWord: correctWordArray.join(),
+              score: state.score - 10,
+            ),
+          );
+          if (_checkWin(state.word.word, state.correctWord)) {
+            emit(
+              state.copyWith(
+                gameStatus: GameStatus.win,
+                score: state.score +
+                    ((int.tryParse(state.word.bookLevel) ?? 1) * 10),
+              ),
+            );
+          }
+          break;
+        }
+      }
     }
   }
 }

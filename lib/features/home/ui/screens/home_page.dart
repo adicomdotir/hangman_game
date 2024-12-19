@@ -61,8 +61,10 @@ class _HomePageState extends State<HomePage> {
                           context.read<HomeBloc>().add(ShowWordTypeEvent());
                           break;
                         case WordHelpDialogResponse.wordMeaning:
+                          context.read<HomeBloc>().add(ShowWordMeanEvent());
                           break;
                         case WordHelpDialogResponse.letter:
+                          context.read<HomeBloc>().add(ShowLetterEvent());
                           break;
                         default:
                       }
@@ -118,9 +120,14 @@ class _HomePageState extends State<HomePage> {
                 height: 64,
               ),
               Text(
-                'Guess Word ${(state.wordHelpState.showWordType) ? {
-                    state.word.wordTypeEntity.shortName,
-                  } : ''}',
+                'Guess Word ${_showWordType(state)}',
+                style: const TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              Text(
+                state.wordHelpState.showMeaning ? 'Meaning' : '',
                 style: const TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.w500,
@@ -184,5 +191,11 @@ class _HomePageState extends State<HomePage> {
       return 'You Lose';
     }
     return '';
+  }
+
+  String _showWordType(HomeState state) {
+    return (state.wordHelpState.showWordType)
+        ? '(${state.word.wordTypeEntity.shortName})'
+        : '';
   }
 }

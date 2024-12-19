@@ -18,3 +18,7 @@ class ResetEvent extends HomeEvent {
 }
 
 class ShowWordTypeEvent extends HomeEvent {}
+
+class ShowWordMeanEvent extends HomeEvent {}
+
+class ShowLetterEvent extends HomeEvent {}
