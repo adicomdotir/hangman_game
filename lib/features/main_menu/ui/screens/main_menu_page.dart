@@ -196,7 +196,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
                     child: Text(
                       item,
                       style: const TextStyle(
-                        fontSize: 18,
+                        fontSize: 16,
                       ),
                     ),
                   ),
@@ -211,7 +211,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
             buttonStyleData: ButtonStyleData(
               padding: const EdgeInsets.only(left: 16, right: 8),
               height: 40,
-              width: MediaQuery.of(context).size.width * 0.4,
+              width: MediaQuery.of(context).size.width * 0.5,
             ),
           ),
         ),
@@ -241,7 +241,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
                 child: Text(
                   'All Lessons',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 16,
                   ),
                 ),
               ),
@@ -254,7 +254,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
                   child: Text(
                     item,
                     style: const TextStyle(
-                      fontSize: 18,
+                      fontSize: 16,
                     ),
                   ),
                 ),
@@ -269,7 +269,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
             buttonStyleData: ButtonStyleData(
               padding: const EdgeInsets.only(left: 16, right: 8),
               height: 40,
-              width: MediaQuery.of(context).size.width * 0.4,
+              width: MediaQuery.of(context).size.width * 0.5,
             ),
           ),
         ),
@@ -299,7 +299,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
                 child: Text(
                   'All Types',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 16,
                   ),
                 ),
               ),
@@ -309,7 +309,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
                   child: Text(
                     item.name.toUpperCase(),
                     style: const TextStyle(
-                      fontSize: 18,
+                      fontSize: 16,
                     ),
                   ),
                 ),
@@ -324,7 +324,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
             buttonStyleData: ButtonStyleData(
               padding: const EdgeInsets.only(left: 16, right: 8),
               height: 40,
-              width: MediaQuery.of(context).size.width * 0.4,
+              width: MediaQuery.of(context).size.width * 0.5,
             ),
           ),
         ),
