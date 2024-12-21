@@ -37,9 +37,9 @@ Future<WordHelpDialogResponse> showWordHelpDialog(
                   }
                 : null,
             child: const Text(
-              'Show me word type (5 Point)',
+              'Word type (5 Point)',
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 18,
                 fontWeight: FontWeight.w300,
               ),
             ),
@@ -51,9 +51,9 @@ Future<WordHelpDialogResponse> showWordHelpDialog(
                   }
                 : null,
             child: const Text(
-              'Show me word meaning (15 Point)',
+              'Word meaning (15 Point)',
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 18,
                 fontWeight: FontWeight.w300,
               ),
             ),
@@ -63,12 +63,15 @@ Future<WordHelpDialogResponse> showWordHelpDialog(
               Navigator.pop(context, WordHelpDialogResponse.letter);
             },
             child: const Text(
-              'Show me a letter (10 Point)',
+              'A letter (10 Point)',
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 18,
                 fontWeight: FontWeight.w300,
               ),
             ),
+          ),
+          const SizedBox(
+            height: 32,
           ),
           TextButton(
             onPressed: () {

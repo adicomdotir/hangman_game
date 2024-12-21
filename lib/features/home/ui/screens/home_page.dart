@@ -129,9 +129,10 @@ class _HomePageState extends State<HomePage> {
               Text(
                 state.wordHelpState.showMeaning ? state.word.mean : '',
                 style: const TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.w500,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w300,
                 ),
+                textAlign: TextAlign.center,
               ),
               Text(
                 _convertGameStatus(state),
