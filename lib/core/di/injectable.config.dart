@@ -46,7 +46,7 @@ import 'package:hangman_game/features/main_menu/data/datasources/remote/main_men
 import 'package:hangman_game/features/main_menu/data/repositories/main_menu_repository_impl.dart'
     as _i1072;
 import 'package:hangman_game/features/main_menu/domain/usecases/get_words_usecase.dart'
-    as _i981;
+    as _i175;
 import 'package:hangman_game/features/main_menu/domain/usecases/logout_usecase.dart'
     as _i994;
 import 'package:hangman_game/features/main_menu/index.dart' as _i192;
@@ -98,13 +98,13 @@ extension GetItInjectableX on _i174.GetIt {
         fetchTopScoresUsecase: gh<_i618.FetchTopScoresUsecase>()));
     gh.factory<_i865.LoginBloc>(() =>
         _i865.LoginBloc(submitLoginUsecase: gh<_i700.SubmitLoginUsecase>()));
-    gh.factory<_i981.GetWordsUsecase>(
-        () => _i981.GetWordsUsecase(gh<_i192.MainMenuRepository>()));
     gh.factory<_i994.LogoutUsecase>(
         () => _i994.LogoutUsecase(gh<_i192.MainMenuRepository>()));
+    gh.factory<_i175.GetWordsUsecase>(
+        () => _i175.GetWordsUsecase(gh<_i192.MainMenuRepository>()));
     gh.factory<_i607.MainMenuBloc>(() => _i607.MainMenuBloc(
           logoutUsecase: gh<_i192.LogoutUsecase>(),
-          getWordsUsecase: gh<_i981.GetWordsUsecase>(),
+          getWordsUsecase: gh<_i175.GetWordsUsecase>(),
         ));
     return this;
   }
