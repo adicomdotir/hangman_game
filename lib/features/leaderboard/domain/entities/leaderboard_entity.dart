@@ -14,10 +14,14 @@ class LeaderboardEntity {
     String? userEmail,
     int? lastScore,
   }) {
-    return LeaderboardEntity(
-      score: score ?? this.score,
-      userEmail: userEmail ?? this.userEmail,
-      lastScore: lastScore ?? this.lastScore,
-    );
+    if (score != null || userEmail != null || lastScore != null) {
+      return LeaderboardEntity(
+        score: score ?? this.score,
+        userEmail: userEmail ?? this.userEmail,
+        lastScore: lastScore ?? this.lastScore,
+      );
+    }
+
+    return this;
   }
 }
