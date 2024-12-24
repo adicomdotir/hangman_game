@@ -172,11 +172,12 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.red,
                 ),
               ),
-              const SizedBox(
-                height: 32,
-              ),
+              const Spacer(),
               KeyboardWidget(
                 key: GlobalKey(),
+              ),
+              const SizedBox(
+                height: 16,
               ),
             ],
           ),
