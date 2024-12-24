@@ -17,8 +17,9 @@ class LeaderboardRemoteDataSourceImpl extends LeaderboardRemoteDataSource {
   Future<List<LeaderboardModel>> fetchTopScores() async {
     final response = await _supabase.client.from('leaderboard').select('''
     score,
-    user_email
-  ''');
+    user_email,
+    last_score
+  ''').order('score');
 
     return response.map((obj) => LeaderboardModel.fromMap(obj)).toList();
   }

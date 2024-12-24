@@ -34,6 +34,47 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
             return ListView.builder(
               itemCount: state.data.length,
               itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          CircleAvatar(child: Text('${index + 1}')),
+                          const SizedBox(
+                            width: 16,
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  state.data[index].userEmail,
+                                  style: const TextStyle(fontSize: 18),
+                                ),
+                                Text(
+                                  'High Score: ${state.data[index].score}',
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                ),
+                                Text(
+                                  'Last Score: ${state.data[index].lastScore}',
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
                 return ListTile(
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -42,6 +83,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                       Text(state.data[index].score.toString()),
                     ],
                   ),
+                  subtitle: Text('Last Score: ${state.data[index].lastScore}'),
                 );
               },
             );

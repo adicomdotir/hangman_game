@@ -20,11 +20,13 @@ class LeaderboardRepositoryImpl extends LeaderboardRepository {
               (model) => LeaderboardEntity(
                 score: model.score,
                 userEmail: model.userEmail,
+                lastScore: model.lastScore,
               ),
             )
             .toList(),
       );
     } catch (e) {
+      print(e);
       return Left(ServerFailure());
     }
   }
