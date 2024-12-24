@@ -78,14 +78,14 @@ extension GetItInjectableX on _i174.GetIt {
         remoteDataSource: gh<_i700.LoginRemoteDataSource>()));
     gh.factory<_i804.MainMenuRemoteDataSource>(() =>
         _i804.MainMenuRemoteDataSourceImpl(supabase: gh<_i454.Supabase>()));
-    gh.factory<_i693.SubmitLoginUsecase>(
-        () => _i693.SubmitLoginUsecase(gh<_i848.LoginRepository>()));
-    gh.factory<_i749.HomeRepository>(() => _i160.HomeRepositoryImpl(
-        homeRemoteDataSource: gh<_i1018.HomeRemoteDataSource>()));
     gh.factory<_i617.LeaderboardRepository>(() =>
         _i216.LeaderboardRepositoryImpl(
             leaderboardRemoteDataSource:
                 gh<_i25.LeaderboardRemoteDataSource>()));
+    gh.factory<_i693.SubmitLoginUsecase>(
+        () => _i693.SubmitLoginUsecase(gh<_i848.LoginRepository>()));
+    gh.factory<_i749.HomeRepository>(() => _i160.HomeRepositoryImpl(
+        homeRemoteDataSource: gh<_i1018.HomeRemoteDataSource>()));
     gh.factory<_i540.FetchTopScoresUsecase>(
         () => _i540.FetchTopScoresUsecase(gh<_i618.LeaderboardRepository>()));
     gh.factory<_i500.AddScoreUsecase>(
