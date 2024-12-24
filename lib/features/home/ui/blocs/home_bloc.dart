@@ -13,7 +13,7 @@ part 'home_state.dart';
 
 @injectable
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  HomeBloc({required this.addScoreUsecase}) : super(HomeState.init(score: 0)) {
+  HomeBloc({required this.addScoreUsecase}) : super(HomeState.init(score: 50)) {
     on<TapLetterEvent>(_tapLetterEvent);
 
     on<CalculateCorrectWordEvent>(_calculateCorrectWordEvent);

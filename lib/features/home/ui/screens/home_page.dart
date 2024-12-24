@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _resetGame() {
-    context.read<HomeBloc>().add(ResetEvent(score: 100));
+    context.read<HomeBloc>().add(ResetEvent(score: 50));
     setState(() {});
   }
 
@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
                 if (value == MenuDialogResponse.back) {
                   context.go(AppRoute.mainMenuPageRouteName);
                 } else if (value == MenuDialogResponse.reset) {
-                  context.read<HomeBloc>().add(ResetEvent(score: 0));
+                  context.read<HomeBloc>().add(ResetEvent(score: 50));
                 }
               }
             },
@@ -105,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                           .read<HomeBloc>()
                           .add(ResetEvent(score: state.score));
                     } else {
-                      context.read<HomeBloc>().add(ResetEvent(score: 0));
+                      context.read<HomeBloc>().add(ResetEvent(score: 50));
                     }
                   },
                   child: const Text(
