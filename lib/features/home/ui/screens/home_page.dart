@@ -5,6 +5,7 @@ import 'package:hangman_game/core/router/route.dart';
 import 'package:hangman_game/features/home/ui/widgets/show_exit_popup.dart';
 import 'package:hangman_game/features/home/ui/widgets/show_menu_dialog.dart';
 import 'package:hangman_game/features/home/ui/widgets/show_word_help_dialog.dart';
+import 'package:hangman_game/features/home/ui/widgets/show_word_info_dialog.dart';
 
 import '../blocs/home_bloc.dart';
 import '../widgets/index.dart';
@@ -42,6 +43,12 @@ class _HomePageState extends State<HomePage> {
                   context.read<HomeBloc>().add(ResetEvent(score: 50));
                 }
               }
+            },
+          );
+        } else if (state.gameStatus == GameStatus.win) {
+          showWordInfoDialog(context, state.word).then(
+            (value) {
+              context.read<HomeBloc>().add(ResetEvent(score: state.score));
             },
           );
         }
@@ -97,25 +104,25 @@ class _HomePageState extends State<HomePage> {
                   fontWeight: FontWeight.w300,
                 ),
               ),
-              if (state.gameStatus == GameStatus.win)
-                TextButton(
-                  onPressed: () {
-                    if (state.gameStatus == GameStatus.win) {
-                      context
-                          .read<HomeBloc>()
-                          .add(ResetEvent(score: state.score));
-                    } else {
-                      context.read<HomeBloc>().add(ResetEvent(score: 50));
-                    }
-                  },
-                  child: const Text(
-                    'NEXT WORD',
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                ),
+              // if (state.gameStatus == GameStatus.win)
+              //   TextButton(
+              //     onPressed: () {
+              //       if (state.gameStatus == GameStatus.win) {
+              //         context
+              //             .read<HomeBloc>()
+              //             .add(ResetEvent(score: state.score));
+              //       } else {
+              //         context.read<HomeBloc>().add(ResetEvent(score: 50));
+              //       }
+              //     },
+              //     child: const Text(
+              //       'NEXT WORD',
+              //       style: TextStyle(
+              //         fontSize: 28,
+              //         fontWeight: FontWeight.w300,
+              //       ),
+              //     ),
+              //   ),
               const SizedBox(
                 height: 64,
               ),
@@ -134,21 +141,6 @@ class _HomePageState extends State<HomePage> {
                 ),
                 textAlign: TextAlign.center,
               ),
-              Text(
-                _convertGameStatus(state),
-                style: const TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.w300,
-                ),
-              ),
-              if (state.gameStatus == GameStatus.lose)
-                Text(
-                  state.word.word,
-                  style: const TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.w300,
-                  ),
-                ),
               const SizedBox(
                 height: 48,
               ),
