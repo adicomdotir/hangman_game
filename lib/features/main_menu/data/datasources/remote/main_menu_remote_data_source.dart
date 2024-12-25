@@ -5,7 +5,11 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 abstract class MainMenuRemoteDataSource {
   Future<void> logout();
 
-  Future<List<WordModel>> getWords();
+  Future<List<WordModel>> getWords(
+    String book,
+    String lesson,
+    int wordType,
+  );
 }
 
 @Injectable(as: MainMenuRemoteDataSource)
@@ -20,17 +24,24 @@ class MainMenuRemoteDataSourceImpl extends MainMenuRemoteDataSource {
   }
 
   @override
-  Future<List<WordModel>> getWords() async {
-    final response = await supabase.client.from('words').select('''
+  Future<List<WordModel>> getWords(
+    String book,
+    String lesson,
+    int wordType,
+  ) async {
+    final response = await supabase.client
+        .from('words')
+        .select('''
       *,
       word_types (
         id,
         name,
         shord_name
       )
-    ''');
-
-    print(response);
+    ''')
+        .filter('book_level', book == '0' ? 'neq' : 'eq', book)
+        .filter('book_lesson', lesson == '0' ? 'neq' : 'eq', lesson)
+        .filter('type_id', wordType == 0 ? 'neq' : 'eq', wordType);
 
     return response.map((obj) => WordModel.fromMap(obj)).toList();
   }

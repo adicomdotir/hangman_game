@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hangman_game/core/router/route.dart';
 import 'package:hangman_game/features/main_menu/domain/entities/word_type_entity.dart';
 import 'package:hangman_game/features/main_menu/index.dart';
+import 'package:hangman_game/features/main_menu/ui/widgets/show_words_dont_excist_dialog.dart';
 import 'package:hangman_game/words.dart';
 
 class MainMenuPage extends StatefulWidget {
@@ -38,8 +39,17 @@ class _MainMenuPageState extends State<MainMenuPage> {
         if (state is LogoutSuccess) {
           context.go(AppRoute.loginPageRouteName);
         } else if (state is GetWordsSuccess) {
+          wordList.clear();
           wordList = state.words;
-          context.go(AppRoute.homePageRouteName);
+          if (wordList.isNotEmpty) {
+            context.go(AppRoute.homePageRouteName);
+          } else {
+            showWordsDontExcistDialog(context).then(
+              (value) {
+                context.read<MainMenuBloc>().add(ChangeStateInitailEvent());
+              },
+            );
+          }
         }
       },
       builder: (context, state) {
@@ -153,7 +163,13 @@ class _MainMenuPageState extends State<MainMenuPage> {
           ),
           AppTextButton(
             onPressed: () {
-              context.read<MainMenuBloc>().add(GetWordsEvent());
+              context.read<MainMenuBloc>().add(
+                    GetWordsEvent(
+                      book: _getBookName(selectedBook),
+                      lesson: _getLessonCode(selectedLesson),
+                      wordType: _getWordTypeCode(selectedWordType),
+                    ),
+                  );
             },
             text: 'Start',
           ),
@@ -330,6 +346,55 @@ class _MainMenuPageState extends State<MainMenuPage> {
         ),
       ],
     );
+  }
+
+  String _getBookName(String? selectedBook) {
+    if (selectedBook == null) {
+      return '0';
+    }
+    switch (selectedBook) {
+      case 'Book 1':
+        return '1';
+      case 'Book 2':
+        return '2';
+      case 'Book 3':
+        return '3';
+      case 'Book 4':
+        return '4';
+      case 'Book 5':
+        return '5';
+      case 'Book 6':
+        return '6';
+    }
+    return '0';
+  }
+
+  String _getLessonCode(String? selectedLesson) {
+    if (selectedLesson == null || selectedLesson == 'All Lessons') {
+      return '0';
+    }
+
+    try {
+      return selectedLesson.split(' ')[1];
+    } catch (e) {
+      return '0';
+    }
+  }
+
+  int _getWordTypeCode(String? selectedWordType) {
+    if (selectedWordType == null) {
+      return 0;
+    }
+
+    final filteredList = wordTypes.where(
+      (wordType) =>
+          wordType.name.toLowerCase() == selectedWordType.toLowerCase(),
+    );
+    if (filteredList.isNotEmpty) {
+      return filteredList.first.id;
+    }
+
+    return 0;
   }
 }
 

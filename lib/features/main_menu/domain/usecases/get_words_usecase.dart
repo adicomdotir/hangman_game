@@ -10,6 +10,14 @@ class GetWordsUsecase {
 
   final MainMenuRepository repository;
 
-  Future<Either<Failure, List<WordEntity>>> call() async =>
-      repository.getWords();
+  Future<Either<Failure, List<WordEntity>>> call(
+    String book,
+    String lesson,
+    int wordType,
+  ) async =>
+      repository.getWords(
+        book,
+        lesson,
+        wordType,
+      );
 }

@@ -21,9 +21,17 @@ class MainMenuRepositoryImpl extends MainMenuRepository {
   }
 
   @override
-  Future<Either<Failure, List<WordEntity>>> getWords() async {
+  Future<Either<Failure, List<WordEntity>>> getWords(
+    String book,
+    String lesson,
+    int wordType,
+  ) async {
     try {
-      final res = await mainMenuRemoteDataSource.getWords();
+      final res = await mainMenuRemoteDataSource.getWords(
+        book,
+        lesson,
+        wordType,
+      );
       return Right(
         res.map((model) => model.toEntity()).toList(),
       );

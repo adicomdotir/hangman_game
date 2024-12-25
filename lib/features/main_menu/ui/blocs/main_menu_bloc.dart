@@ -19,6 +19,7 @@ class MainMenuBloc extends Bloc<MainMenuEvent, MainMenuState> {
         super(MainMenuInitial()) {
     on<LogoutEvent>(_logoutEvent);
     on<GetWordsEvent>(_getWordsEvent);
+    on<ChangeStateInitailEvent>(_changeStateInitialEvent);
   }
 
   final LogoutUsecase _logoutUsecase;
@@ -44,7 +45,8 @@ class MainMenuBloc extends Bloc<MainMenuEvent, MainMenuState> {
     Emitter<MainMenuState> emit,
   ) async {
     emit(MainMenuLoading());
-    final res = await _getWordsUsecase.call();
+    final res =
+        await _getWordsUsecase.call(event.book, event.lesson, event.wordType);
     res.fold(
       (error) {
         emit(MainMenuError());
@@ -53,5 +55,12 @@ class MainMenuBloc extends Bloc<MainMenuEvent, MainMenuState> {
         emit(GetWordsSuccess(success));
       },
     );
+  }
+
+  FutureOr<void> _changeStateInitialEvent(
+    ChangeStateInitailEvent event,
+    Emitter<MainMenuState> emit,
+  ) async {
+    emit(MainMenuInitial());
   }
 }
