@@ -44,6 +44,7 @@ class HomeState {
       score: score,
       mistakeCount: 0,
       wordHelpState: WordHelpState.empty(),
+      scoreIsLowError: false,
     );
   }
 
@@ -56,6 +57,7 @@ class HomeState {
     required this.score,
     required this.mistakeCount,
     required this.wordHelpState,
+    required this.scoreIsLowError,
   });
 
   final WordEntity word;
@@ -66,6 +68,7 @@ class HomeState {
   final int score;
   final int mistakeCount;
   final WordHelpState wordHelpState;
+  final bool scoreIsLowError;
 
   HomeState copyWith({
     String? correctWord,
@@ -75,6 +78,7 @@ class HomeState {
     int? score,
     int? mistakeCount,
     WordHelpState? wordHelpState,
+    bool? scoreIsLowError,
   }) {
     return HomeState(
       word: word,
@@ -85,6 +89,7 @@ class HomeState {
       score: score ?? this.score,
       mistakeCount: mistakeCount ?? this.mistakeCount,
       wordHelpState: wordHelpState ?? this.wordHelpState,
+      scoreIsLowError: scoreIsLowError ?? this.scoreIsLowError,
     );
   }
 }

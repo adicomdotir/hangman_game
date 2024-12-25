@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hangman_game/core/router/route.dart';
 import 'package:hangman_game/features/home/ui/widgets/show_exit_popup.dart';
 import 'package:hangman_game/features/home/ui/widgets/show_menu_dialog.dart';
+import 'package:hangman_game/features/home/ui/widgets/show_score_is_low_error_dialog.dart';
 import 'package:hangman_game/features/home/ui/widgets/show_word_help_dialog.dart';
 import 'package:hangman_game/features/home/ui/widgets/show_word_info_dialog.dart';
 
@@ -50,6 +51,10 @@ class _HomePageState extends State<HomePage> {
             (value) {
               context.read<HomeBloc>().add(ResetEvent(score: state.score));
             },
+          );
+        } else if (state.scoreIsLowError) {
+          showScoreIsLowErrorDialog(context).then(
+            (value) => context.read<HomeBloc>().add(RemoveErrorEvent()),
           );
         }
       },

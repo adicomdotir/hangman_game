@@ -25,6 +25,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<ShowWordMeanEvent>(_showWordMeanEvent);
 
     on<ShowLetterEvent>(_showLetterEvent);
+
+    on<RemoveErrorEvent>(_removeErrorEvent);
   }
 
   final AddScoreUsecase addScoreUsecase;
@@ -118,13 +120,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     ShowWordTypeEvent event,
     Emitter<HomeState> emit,
   ) {
-    if (state.score > 5) {
+    if (state.score >= 5) {
       emit(
         state.copyWith(
           wordHelpState: state.wordHelpState.copyWith(showWordType: true),
           score: state.score - 5,
         ),
       );
+    } else {
+      emit(state.copyWith(scoreIsLowError: true));
     }
   }
 
@@ -132,13 +136,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     ShowWordMeanEvent event,
     Emitter<HomeState> emit,
   ) {
-    if (state.score > 15) {
+    if (state.score >= 15) {
       emit(
         state.copyWith(
           wordHelpState: state.wordHelpState.copyWith(showMeaning: true),
           score: state.score - 15,
         ),
       );
+    } else {
+      emit(state.copyWith(scoreIsLowError: true));
     }
   }
 
@@ -146,7 +152,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     ShowLetterEvent event,
     Emitter<HomeState> emit,
   ) {
-    if (state.score > 10) {
+    if (state.score >= 10) {
       final correctWordArray = state.correctWord.split('');
       for (var idx = 0; idx < correctWordArray.length; idx++) {
         final letter = correctWordArray[idx];
@@ -170,6 +176,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           break;
         }
       }
+    } else {
+      emit(state.copyWith(scoreIsLowError: true));
     }
+  }
+
+  FutureOr<void> _removeErrorEvent(
+    RemoveErrorEvent event,
+    Emitter<HomeState> emit,
+  ) {
+    emit(state.copyWith(scoreIsLowError: false));
   }
 }

@@ -22,3 +22,5 @@ class ShowWordTypeEvent extends HomeEvent {}
 class ShowWordMeanEvent extends HomeEvent {}
 
 class ShowLetterEvent extends HomeEvent {}
+
+class RemoveErrorEvent extends HomeEvent {}
