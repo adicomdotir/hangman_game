@@ -46,7 +46,9 @@ class _MainMenuPageState extends State<MainMenuPage> {
           } else {
             showWordsDontExcistDialog(context).then(
               (value) {
-                context.read<MainMenuBloc>().add(ChangeStateInitailEvent());
+                if (context.mounted) {
+                  context.read<MainMenuBloc>().add(ChangeStateInitailEvent());
+                }
               },
             );
           }

@@ -49,12 +49,18 @@ class _HomePageState extends State<HomePage> {
         } else if (state.gameStatus == GameStatus.win) {
           showWordInfoDialog(context, state.word).then(
             (value) {
-              context.read<HomeBloc>().add(ResetEvent(score: state.score));
+              if (context.mounted) {
+                context.read<HomeBloc>().add(ResetEvent(score: state.score));
+              }
             },
           );
         } else if (state.scoreIsLowError) {
           showScoreIsLowErrorDialog(context).then(
-            (value) => context.read<HomeBloc>().add(RemoveErrorEvent()),
+            (value) {
+              if (context.mounted) {
+                context.read<HomeBloc>().add(RemoveErrorEvent());
+              }
+            },
           );
         }
       },
@@ -68,17 +74,19 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {
                   showWordHelpDialog(context, state.wordHelpState).then(
                     (value) {
-                      switch (value) {
-                        case WordHelpDialogResponse.wordType:
-                          context.read<HomeBloc>().add(ShowWordTypeEvent());
-                          break;
-                        case WordHelpDialogResponse.wordMeaning:
-                          context.read<HomeBloc>().add(ShowWordMeanEvent());
-                          break;
-                        case WordHelpDialogResponse.letter:
-                          context.read<HomeBloc>().add(ShowLetterEvent());
-                          break;
-                        default:
+                      if (context.mounted) {
+                        switch (value) {
+                          case WordHelpDialogResponse.wordType:
+                            context.read<HomeBloc>().add(ShowWordTypeEvent());
+                            break;
+                          case WordHelpDialogResponse.wordMeaning:
+                            context.read<HomeBloc>().add(ShowWordMeanEvent());
+                            break;
+                          case WordHelpDialogResponse.letter:
+                            context.read<HomeBloc>().add(ShowLetterEvent());
+                            break;
+                          default:
+                        }
                       }
                     },
                   );
@@ -175,15 +183,6 @@ class _HomePageState extends State<HomePage> {
         );
       },
     );
-  }
-
-  String _convertGameStatus(HomeState state) {
-    if (state.gameStatus == GameStatus.win) {
-      return 'You Win';
-    } else if (state.gameStatus == GameStatus.lose) {
-      return 'You Lose';
-    }
-    return '';
   }
 
   String _showWordType(HomeState state) {

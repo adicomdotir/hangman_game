@@ -52,10 +52,6 @@ void main() {
         final result = await repository.fetchTopScores();
         // assert
         verify(mockRemoteDataSource.fetchTopScores());
-        print(result);
-        print(
-          Right<Failure, List<LeaderboardEntity>>(tLeaderboardEntities),
-        );
         expect(
           result,
           equals(

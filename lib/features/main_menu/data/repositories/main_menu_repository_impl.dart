@@ -36,7 +36,6 @@ class MainMenuRepositoryImpl extends MainMenuRepository {
         res.map((model) => model.toEntity()).toList(),
       );
     } catch (e) {
-      print(e);
       return Left(ServerFailure());
     }
   }
