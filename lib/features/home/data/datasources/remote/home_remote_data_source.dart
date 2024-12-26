@@ -21,18 +21,26 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
           .select()
           .eq('user_email', user.email ?? '');
 
-      final oldScore = fetchUserScoreResponse.first['score'];
-
-      final body = {
-        'user_email': user.email,
-        'score': score > oldScore ? score : oldScore,
-        'last_score': score,
-      };
       if (fetchUserScoreResponse.isNotEmpty) {
-        body['id'] = fetchUserScoreResponse.first['id'];
-      }
+        final oldScore = fetchUserScoreResponse.first['score'];
 
-      await supabase.client.from('leaderboard').upsert(body);
+        final body = {
+          'user_email': user.email,
+          'score': score > oldScore ? score : oldScore,
+          'last_score': score,
+        };
+
+        body['id'] = fetchUserScoreResponse.first['id'];
+
+        await supabase.client.from('leaderboard').upsert(body);
+      } else {
+        final body = {
+          'user_email': user.email,
+          'score': score,
+          'last_score': score,
+        };
+        await supabase.client.from('leaderboard').upsert(body);
+      }
 
       // if (response.error != null) {
       //   // Handle error
