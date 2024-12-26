@@ -24,7 +24,6 @@ Future<void> showScoreIsLowErrorDialog(
             'Warning',
             style: TextStyle(
               fontSize: 22,
-              fontWeight: FontWeight.w500,
             ),
           ),
         ),
@@ -37,7 +36,6 @@ Future<void> showScoreIsLowErrorDialog(
               'Your score is low for this action'.toUpperCase(),
               style: const TextStyle(
                 fontSize: 20,
-                fontWeight: FontWeight.w300,
               ),
               textAlign: TextAlign.center,
             ),
@@ -53,7 +51,6 @@ Future<void> showScoreIsLowErrorDialog(
               'OK',
               style: TextStyle(
                 fontSize: 22,
-                fontWeight: FontWeight.w500,
               ),
             ),
           ),

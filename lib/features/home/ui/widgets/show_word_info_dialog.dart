@@ -26,7 +26,6 @@ Future<void> showWordInfoDialog(
             'Word',
             style: TextStyle(
               fontSize: 22,
-              fontWeight: FontWeight.w500,
             ),
           ),
         ),
@@ -39,7 +38,6 @@ Future<void> showWordInfoDialog(
               word.word.toUpperCase(),
               style: const TextStyle(
                 fontSize: 20,
-                fontWeight: FontWeight.w300,
               ),
             ),
           ),
@@ -51,7 +49,6 @@ Future<void> showWordInfoDialog(
               word.wordTypeEntity.name.toUpperCase(),
               style: const TextStyle(
                 fontSize: 20,
-                fontWeight: FontWeight.w300,
               ),
             ),
           ),
@@ -63,7 +60,6 @@ Future<void> showWordInfoDialog(
               word.mean.replaceAll('[word]', word.word),
               style: const TextStyle(
                 fontSize: 20,
-                fontWeight: FontWeight.w300,
               ),
               textAlign: TextAlign.center,
             ),
@@ -79,7 +75,6 @@ Future<void> showWordInfoDialog(
               'OK',
               style: TextStyle(
                 fontSize: 22,
-                fontWeight: FontWeight.w500,
               ),
             ),
           ),

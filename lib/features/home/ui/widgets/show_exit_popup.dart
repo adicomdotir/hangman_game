@@ -26,7 +26,6 @@ Future<bool?> showExitPopup(context) async {
                 'Do you want to back to MainMenu?',
                 style: TextStyle(
                   fontSize: 24,
-                  fontWeight: FontWeight.w500,
                 ),
               ),
               Row(
@@ -40,7 +39,6 @@ Future<bool?> showExitPopup(context) async {
                         'Yes',
                         style: TextStyle(
                           fontSize: 24,
-                          fontWeight: FontWeight.w300,
                         ),
                       ),
                     ),
@@ -55,7 +53,6 @@ Future<bool?> showExitPopup(context) async {
                         'No',
                         style: TextStyle(
                           fontSize: 24,
-                          fontWeight: FontWeight.w300,
                         ),
                       ),
                     ),

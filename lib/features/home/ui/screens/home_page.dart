@@ -106,7 +106,6 @@ class _HomePageState extends State<HomePage> {
                 'Score: ${state.score}',
                 style: const TextStyle(
                   fontSize: 20,
-                  fontWeight: FontWeight.w700,
                 ),
               ),
               // if (state.gameStatus == GameStatus.win)
@@ -124,7 +123,6 @@ class _HomePageState extends State<HomePage> {
               //       'NEXT WORD',
               //       style: TextStyle(
               //         fontSize: 28,
-              //         fontWeight: FontWeight.w300,
               //       ),
               //     ),
               //   ),
@@ -135,14 +133,12 @@ class _HomePageState extends State<HomePage> {
                 'Guess Word ${_showWordType(state)}',
                 style: const TextStyle(
                   fontSize: 28,
-                  fontWeight: FontWeight.w500,
                 ),
               ),
               Text(
                 state.wordHelpState.showMeaning ? state.word.mean : '',
                 style: const TextStyle(
                   fontSize: 18,
-                  fontWeight: FontWeight.w300,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -153,7 +149,6 @@ class _HomePageState extends State<HomePage> {
                 state.correctWord.toUpperCase(),
                 style: const TextStyle(
                   fontSize: 28,
-                  fontWeight: FontWeight.w700,
                   letterSpacing: 6,
                 ),
               ),
@@ -164,7 +159,6 @@ class _HomePageState extends State<HomePage> {
                 state.inCorrectWord.toUpperCase(),
                 style: const TextStyle(
                   fontSize: 28,
-                  fontWeight: FontWeight.w400,
                   letterSpacing: 6,
                   color: Colors.red,
                 ),

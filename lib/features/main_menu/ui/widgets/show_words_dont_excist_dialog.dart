@@ -24,7 +24,6 @@ Future<void> showWordsDontExcistDialog(
             'Warning',
             style: TextStyle(
               fontSize: 22,
-              fontWeight: FontWeight.w500,
             ),
           ),
         ),
@@ -37,7 +36,6 @@ Future<void> showWordsDontExcistDialog(
               'There aren\'t words! Try again',
               style: TextStyle(
                 fontSize: 20,
-                fontWeight: FontWeight.w300,
               ),
               textAlign: TextAlign.center,
             ),
@@ -53,7 +51,6 @@ Future<void> showWordsDontExcistDialog(
               'OK',
               style: TextStyle(
                 fontSize: 22,
-                fontWeight: FontWeight.w500,
               ),
             ),
           ),

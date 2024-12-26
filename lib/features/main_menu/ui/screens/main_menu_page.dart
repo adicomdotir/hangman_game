@@ -102,7 +102,6 @@ class _MainMenuPageState extends State<MainMenuPage> {
               'New Game',
               style: TextStyle(
                 fontSize: 28,
-                fontWeight: FontWeight.w300,
               ),
             ),
           ),
@@ -117,7 +116,6 @@ class _MainMenuPageState extends State<MainMenuPage> {
               'Leaderboard',
               style: TextStyle(
                 fontSize: 28,
-                fontWeight: FontWeight.w300,
               ),
             ),
           ),
@@ -132,7 +130,6 @@ class _MainMenuPageState extends State<MainMenuPage> {
               'Logout',
               style: TextStyle(
                 fontSize: 28,
-                fontWeight: FontWeight.w300,
               ),
             ),
           ),
@@ -199,7 +196,6 @@ class _MainMenuPageState extends State<MainMenuPage> {
             'Book',
             style: TextStyle(
               fontSize: 20,
-              fontWeight: FontWeight.w300,
             ),
           ),
         ),
@@ -245,7 +241,6 @@ class _MainMenuPageState extends State<MainMenuPage> {
             '$selectedBook',
             style: const TextStyle(
               fontSize: 20,
-              fontWeight: FontWeight.w300,
             ),
           ),
         ),
@@ -303,7 +298,6 @@ class _MainMenuPageState extends State<MainMenuPage> {
             'Word Type',
             style: TextStyle(
               fontSize: 20,
-              fontWeight: FontWeight.w300,
             ),
           ),
         ),
@@ -416,7 +410,6 @@ class AppTextButton extends StatelessWidget {
         text,
         style: const TextStyle(
           fontSize: 20,
-          fontWeight: FontWeight.w300,
         ),
       ),
     );

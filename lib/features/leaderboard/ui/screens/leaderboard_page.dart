@@ -57,14 +57,12 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                                   'High Score: ${state.data[index].score}',
                                   style: const TextStyle(
                                     fontSize: 14,
-                                    fontWeight: FontWeight.w300,
                                   ),
                                 ),
                                 Text(
                                   'Last Score: ${state.data[index].lastScore}',
                                   style: const TextStyle(
                                     fontSize: 14,
-                                    fontWeight: FontWeight.w300,
                                   ),
                                 ),
                               ],

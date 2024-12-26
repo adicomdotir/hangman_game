@@ -33,7 +33,6 @@ Future<WordHelpDialogResponse?> showWordHelpDialog(
             'How can help you?',
             style: TextStyle(
               fontSize: 22,
-              fontWeight: FontWeight.w300,
             ),
           ),
         ),
@@ -51,7 +50,6 @@ Future<WordHelpDialogResponse?> showWordHelpDialog(
               'Word type (5 Point)',
               style: TextStyle(
                 fontSize: 18,
-                fontWeight: FontWeight.w300,
               ),
             ),
           ),
@@ -65,7 +63,6 @@ Future<WordHelpDialogResponse?> showWordHelpDialog(
               'Word meaning (15 Point)',
               style: TextStyle(
                 fontSize: 18,
-                fontWeight: FontWeight.w300,
               ),
             ),
           ),
@@ -77,7 +74,6 @@ Future<WordHelpDialogResponse?> showWordHelpDialog(
               'A letter (10 Point)',
               style: TextStyle(
                 fontSize: 18,
-                fontWeight: FontWeight.w300,
               ),
             ),
           ),
@@ -92,7 +88,6 @@ Future<WordHelpDialogResponse?> showWordHelpDialog(
               'Cancel',
               style: TextStyle(
                 fontSize: 20,
-                fontWeight: FontWeight.w300,
               ),
             ),
           ),

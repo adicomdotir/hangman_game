@@ -27,7 +27,6 @@ Future<MenuDialogResponse?> showMenuDialog(context) async {
             'You Lose!',
             style: TextStyle(
               fontSize: 22,
-              fontWeight: FontWeight.w300,
             ),
           ),
         ),
@@ -43,7 +42,6 @@ Future<MenuDialogResponse?> showMenuDialog(context) async {
               'Play Again',
               style: TextStyle(
                 fontSize: 22,
-                fontWeight: FontWeight.w300,
               ),
             ),
           ),
@@ -55,7 +53,6 @@ Future<MenuDialogResponse?> showMenuDialog(context) async {
               'Back to main menu',
               style: TextStyle(
                 fontSize: 22,
-                fontWeight: FontWeight.w300,
               ),
             ),
           ),
