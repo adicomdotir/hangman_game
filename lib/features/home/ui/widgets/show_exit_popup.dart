@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
 
-Future<bool> showExitPopup(context) async {
-  return await showDialog(
+Future<bool?> showExitPopup(context) async {
+  return await showGeneralDialog<bool>(
     context: context,
-    builder: (BuildContext context) {
+    barrierColor: Colors.black.withOpacity(0.5),
+    transitionDuration: const Duration(milliseconds: 150),
+    transitionBuilder: (context, animation, secondaryAnimation, child) {
+      return FadeTransition(
+        opacity: animation,
+        child: ScaleTransition(
+          scale: animation,
+          child: child,
+        ),
+      );
+    },
+    pageBuilder: (context, animation, secondaryAnimation) {
       return AlertDialog(
         content: SizedBox(
           height: MediaQuery.of(context).size.height * 0.2,

@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
             leading: IconButton(
               onPressed: () async {
                 final result = await showExitPopup(context);
-                if (result && context.mounted) {
+                if (result != null && result && context.mounted) {
                   context.go(AppRoute.mainMenuPageRouteName);
                 }
               },

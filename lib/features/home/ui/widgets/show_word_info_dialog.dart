@@ -5,10 +5,21 @@ Future<void> showWordInfoDialog(
   context,
   WordEntity word,
 ) async {
-  return await showDialog(
+  return await showGeneralDialog<void>(
     context: context,
     barrierDismissible: false,
-    builder: (context) {
+    barrierColor: Colors.black.withOpacity(0.5),
+    transitionDuration: const Duration(milliseconds: 200),
+    transitionBuilder: (context, animation, secondaryAnimation, child) {
+      return FadeTransition(
+        opacity: animation,
+        child: ScaleTransition(
+          scale: animation,
+          child: child,
+        ),
+      );
+    },
+    pageBuilder: (context, animation, secondaryAnimation) {
       return SimpleDialog(
         title: const Center(
           child: Text(
