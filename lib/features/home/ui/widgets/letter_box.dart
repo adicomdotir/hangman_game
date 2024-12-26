@@ -16,31 +16,31 @@ class LetterBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: InkWell(
-        onTap: () {
-          if (context.read<HomeBloc>().state.gameStatus == GameStatus.normal &&
-              model.isActive) {
-            context
-                .read<HomeBloc>()
-                .add(TapLetterEvent(letter: model.letter, letterIndex: idx));
-          }
-        },
-        child: Container(
+    return InkWell(
+      onTap: () {
+        if (context.read<HomeBloc>().state.gameStatus == GameStatus.normal &&
+            model.isActive) {
+          context
+              .read<HomeBloc>()
+              .add(TapLetterEvent(letter: model.letter, letterIndex: idx));
+        }
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
           color: model.isActive
               ? Theme.of(context).primaryColor
               : Theme.of(context).colorScheme.inversePrimary,
-          width: boxWidth - 8,
-          height: 64 - 8,
-          child: Center(
-            child: Text(
-              model.letter.toUpperCase(),
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-              ),
+        ),
+        width: boxWidth - 4,
+        height: 64 - 4,
+        child: Center(
+          child: Text(
+            model.letter.toUpperCase(),
+            style: const TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.w500,
+              color: Colors.white,
             ),
           ),
         ),

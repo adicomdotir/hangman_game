@@ -13,10 +13,16 @@ class KeyboardModel {
 }
 
 List<KeyboardModel> generateKeyboardList() {
-  String letters = 'abcdefghijklmnopqrstuvwxyz';
+  String letters = 'abcdefghijklmnopqrstuvwxyz  ';
 
   return List<KeyboardModel>.generate(
-    26,
+    28,
     (index) => KeyboardModel(letter: letters[index], isActive: true),
-  );
+  ).map(toElement).toList();
+}
+
+KeyboardModel toElement(KeyboardModel model) {
+  return model.letter == ' '
+      ? model.copyWith(isActive: false)
+      : model.copyWith(isActive: true);
 }

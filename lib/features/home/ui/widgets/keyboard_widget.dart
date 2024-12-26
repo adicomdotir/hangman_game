@@ -6,21 +6,34 @@ class KeyboardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double boxWidth = MediaQuery.of(context).size.width / 10;
+    double boxWidth = MediaQuery.of(context).size.width / 8;
 
     return Column(
       children: [
         KeyboardRow(
           boxWidth: boxWidth,
-          indexes: const [0, 1, 2, 3, 4, 5, 6, 7, 8],
+          indexes: const [0, 1, 2, 3, 4, 5, 6],
+        ),
+        const SizedBox(
+          height: 12,
         ),
         KeyboardRow(
           boxWidth: boxWidth,
-          indexes: const [9, 10, 11, 12, 13, 14, 15, 16, 17],
+          indexes: const [7, 8, 9, 10, 11, 12, 13],
+        ),
+        const SizedBox(
+          height: 12,
         ),
         KeyboardRow(
           boxWidth: boxWidth,
-          indexes: const [18, 19, 20, 21, 22, 23, 24, 25],
+          indexes: const [14, 15, 16, 17, 18, 19, 20],
+        ),
+        const SizedBox(
+          height: 12,
+        ),
+        KeyboardRow(
+          boxWidth: boxWidth,
+          indexes: const [21, 22, 23, 24, 25, 26, 27],
         ),
       ],
     );

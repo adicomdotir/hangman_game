@@ -38,9 +38,11 @@ class MyApp extends StatelessWidget {
         routerConfig: router,
         title: 'Guess Word',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color(0xFFd3d3ff),
+          ),
           useMaterial3: true,
-          fontFamily: 'RobotoMono',
+          fontFamily: 'BubblegumSans',
         ),
         debugShowCheckedModeBanner: false,
       ),

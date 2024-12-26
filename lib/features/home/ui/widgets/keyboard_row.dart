@@ -17,7 +17,7 @@ class KeyboardRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final keyModels = context.read<HomeBloc>().state.keyModels;
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         ...indexes.map((idx) {
           return LetterBox(

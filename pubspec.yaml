@@ -32,23 +32,7 @@ flutter:
   uses-material-design: true
 
   fonts:
-    - family: RobotoMono
+    - family: BubblegumSans
       fonts:
-        - asset: assets/fonts/roboto_mono/RobotoMono-Bold.ttf
-          weight: 900
-        - asset: assets/fonts/roboto_mono/RobotoMono-Bold.ttf
-          weight: 800
-        - asset: assets/fonts/roboto_mono/RobotoMono-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/roboto_mono/RobotoMono-Medium.ttf
-          weight: 600
-        - asset: assets/fonts/roboto_mono/RobotoMono-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/roboto_mono/RobotoMono-Regular.ttf
+        - asset: assets/fonts/bubblegum_sans/BubblegumSans-Regular.ttf
           weight: 400
-        - asset: assets/fonts/roboto_mono/RobotoMono-Light.ttf
-          weight: 300
-        - asset: assets/fonts/roboto_mono/RobotoMono-Light.ttf
-          weight: 200
-        - asset: assets/fonts/roboto_mono/RobotoMono-Thin.ttf
-          weight: 100
