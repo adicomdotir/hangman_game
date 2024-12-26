@@ -73,16 +73,6 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                     ),
                   ),
                 );
-                return ListTile(
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(state.data[index].userEmail),
-                      Text(state.data[index].score.toString()),
-                    ],
-                  ),
-                  subtitle: Text('Last Score: ${state.data[index].lastScore}'),
-                );
               },
             );
           } else if (state is LeaderboardError) {
