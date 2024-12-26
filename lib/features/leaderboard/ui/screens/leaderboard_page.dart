@@ -20,8 +20,11 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text(
+          'Leaderboard',
+          style: TextStyle(fontSize: 28),
+        ),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Leaderboard'),
       ),
       body: BlocBuilder<LeaderboardBloc, LeaderboardState>(
         builder: (context, state) {
@@ -31,49 +34,77 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                 child: Text('No Data'),
               );
             }
-            return ListView.builder(
-              itemCount: state.data.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Card(
+            return Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: ListView.builder(
+                itemCount: state.data.length + 1,
+                itemBuilder: (context, index) {
+                  if (index == 0) {
+                    return const Card(
+                      elevation: 2,
+                      child: Padding(
+                        padding: EdgeInsets.all(16),
+                        child: Row(
+                          children: [
+                            Text(
+                              '#',
+                              style: TextStyle(fontSize: 18),
+                            ),
+                            SizedBox(width: 16),
+                            Text(
+                              'Username',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Spacer(),
+                            Text(
+                              'High Score / Last Score',
+                              style: TextStyle(fontSize: 18),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }
+
+                  final player = state.data[index - 1];
+                  final isCurrentUser = player.userEmail ==
+                      'user1@example.com'; //Replace with current user id
+
+                  return Card(
+                    color: isCurrentUser
+                        ? Colors.blueGrey[100] // Highlight current user
+                        : null,
+                    elevation: 2,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(16),
                       child: Row(
                         children: [
-                          CircleAvatar(child: Text('${index + 1}')),
-                          const SizedBox(
-                            width: 16,
+                          Text(
+                            '$index.',
+                            style: const TextStyle(fontSize: 18),
                           ),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  state.data[index].userEmail,
-                                  style: const TextStyle(fontSize: 18),
-                                ),
-                                Text(
-                                  'High Score: ${state.data[index].score}',
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                  ),
-                                ),
-                                Text(
-                                  'Last Score: ${state.data[index].lastScore}',
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ],
+                          const SizedBox(width: 16),
+                          Text(
+                            player.userEmail.toString(),
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
                             ),
+                          ),
+                          const Spacer(),
+                          Text(
+                            '${player.score.toString()}/${player.lastScore.toString()}',
+                            style: const TextStyle(fontSize: 18),
                           ),
                         ],
                       ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             );
           } else if (state is LeaderboardError) {
             return Center(child: Text('error'.toUpperCase()));
