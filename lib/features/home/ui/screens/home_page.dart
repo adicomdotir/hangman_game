@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hangman_game/core/bloc/word/word_bloc.dart';
 import 'package:hangman_game/core/router/route.dart';
+import 'package:hangman_game/features/home/ui/widgets/correct_word_text_widget.dart';
+import 'package:hangman_game/features/home/ui/widgets/incorrect_word_text_widget.dart';
 import 'package:hangman_game/features/home/ui/widgets/show_exit_popup.dart';
 import 'package:hangman_game/features/home/ui/widgets/show_menu_dialog.dart';
 import 'package:hangman_game/features/home/ui/widgets/show_score_is_low_error_dialog.dart';
@@ -160,23 +162,14 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 48,
               ),
-              Text(
-                state.correctWord.toUpperCase(),
-                style: const TextStyle(
-                  fontSize: 28,
-                  letterSpacing: 6,
-                ),
+              CorrectWordTextWidget(
+                word: state.correctWord,
               ),
               const SizedBox(
                 height: 16,
               ),
-              Text(
-                state.inCorrectWord.toUpperCase(),
-                style: const TextStyle(
-                  fontSize: 28,
-                  letterSpacing: 6,
-                  color: Colors.red,
-                ),
+              IncorrectWordTextWidget(
+                word: state.inCorrectWord,
               ),
               const Spacer(),
               KeyboardWidget(
