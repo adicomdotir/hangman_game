@@ -1,12 +1,16 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hangman_game/core/bloc/word/word_bloc.dart';
 import 'package:hangman_game/core/router/route.dart';
 import 'package:hangman_game/features/home/ui/widgets/show_exit_popup.dart';
 import 'package:hangman_game/features/home/ui/widgets/show_menu_dialog.dart';
 import 'package:hangman_game/features/home/ui/widgets/show_score_is_low_error_dialog.dart';
 import 'package:hangman_game/features/home/ui/widgets/show_word_help_dialog.dart';
 import 'package:hangman_game/features/home/ui/widgets/show_word_info_dialog.dart';
+import 'package:hangman_game/features/main_menu/domain/entities/word_entity.dart';
 
 import '../blocs/home_bloc.dart';
 import '../widgets/index.dart';
@@ -25,9 +29,12 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-  void _resetGame() {
-    context.read<HomeBloc>().add(ResetEvent(score: 50));
-    setState(() {});
+  void _resetGame({int score = 50}) {
+    List<WordEntity> words = context.read<WordBloc>().state;
+    int rnd = Random().nextInt(words.length);
+    context
+        .read<HomeBloc>()
+        .add(ResetEvent(score: score, wordEntity: words[rnd]));
   }
 
   @override
@@ -41,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                 if (value == MenuDialogResponse.back) {
                   context.go(AppRoute.mainMenuPageRouteName);
                 } else if (value == MenuDialogResponse.reset) {
-                  context.read<HomeBloc>().add(ResetEvent(score: 50));
+                  _resetGame();
                 }
               }
             },
@@ -50,7 +57,7 @@ class _HomePageState extends State<HomePage> {
           showWordInfoDialog(context, state.word).then(
             (value) {
               if (context.mounted) {
-                context.read<HomeBloc>().add(ResetEvent(score: state.score));
+                _resetGame(score: state.score);
               }
             },
           );

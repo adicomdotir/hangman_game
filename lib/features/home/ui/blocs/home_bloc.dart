@@ -1,11 +1,8 @@
 import 'dart:async';
-import 'dart:math';
 
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hangman_game/features/home/index.dart';
 import 'package:hangman_game/features/main_menu/domain/entities/word_entity.dart';
-import 'package:hangman_game/words.dart';
 import 'package:injectable/injectable.dart';
 
 part 'home_event.dart';
@@ -13,7 +10,8 @@ part 'home_state.dart';
 
 @injectable
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  HomeBloc({required this.addScoreUsecase}) : super(HomeState.init(score: 50)) {
+  HomeBloc({required this.addScoreUsecase})
+      : super(HomeState.init(score: 50, wordEntity: WordEntity.empty())) {
     on<TapLetterEvent>(_tapLetterEvent);
 
     on<CalculateCorrectWordEvent>(_calculateCorrectWordEvent);
@@ -111,7 +109,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   FutureOr<void> _resetGameEvent(ResetEvent event, emit) {
     emit(
-      HomeState.init(score: event.score),
+      HomeState.init(score: event.score, wordEntity: event.wordEntity),
     );
     add(CalculateCorrectWordEvent());
   }

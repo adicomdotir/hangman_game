@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hangman_game/core/bloc/word/word_bloc.dart';
 import 'package:hangman_game/core/constants.dart';
 import 'package:hangman_game/core/di/injectable.dart';
 import 'package:hangman_game/core/router/route.dart';
@@ -27,6 +28,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+          create: (context) => getIt<WordBloc>(),
+        ),
         BlocProvider(
           create: (context) => getIt<HomeBloc>(),
         ),

@@ -27,16 +27,9 @@ class WordHelpState {
 }
 
 class HomeState {
-  factory HomeState.init({required int score}) {
-    int rnd = Random().nextInt(wordList.length);
-    WordEntity? word;
-    try {
-      word = wordList[rnd];
-    } catch (e) {
-      debugPrint(e.toString());
-    }
+  factory HomeState.init({required int score, required WordEntity wordEntity}) {
     return HomeState(
-      word: word!,
+      word: wordEntity,
       correctWord: '',
       inCorrectWord: '',
       keyModels: generateKeyboardList(),

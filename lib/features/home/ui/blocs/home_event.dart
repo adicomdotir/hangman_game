@@ -12,9 +12,10 @@ class TapLetterEvent extends HomeEvent {
 }
 
 class ResetEvent extends HomeEvent {
-  ResetEvent({required this.score});
+  ResetEvent({required this.score, required this.wordEntity});
 
   final int score;
+  final WordEntity wordEntity;
 }
 
 class ShowWordTypeEvent extends HomeEvent {}

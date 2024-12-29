@@ -1,6 +1,18 @@
 import 'package:hangman_game/features/main_menu/domain/entities/word_type_entity.dart';
 
 class WordEntity {
+  factory WordEntity.empty() {
+    return WordEntity(
+      id: 0,
+      word: 'word',
+      bookLevel: '0',
+      bookLesson: '0',
+      typeId: 0,
+      wordTypeEntity: WordTypeEntity(id: 0, name: '', shortName: ''),
+      mean: 'mean',
+    );
+  }
+
   WordEntity({
     required this.id,
     required this.word,
