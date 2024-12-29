@@ -9,7 +9,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:get_it/get_it.dart' as _i174;
-import 'package:hangman_game/core/bloc/word/word_bloc.dart' as _i443;
+import 'package:hangman_game/core/bloc/word_list/word_list_bloc.dart' as _i443;
 import 'package:hangman_game/core/di/injectable.dart' as _i224;
 import 'package:hangman_game/features/home/data/datasources/remote/home_remote_data_source.dart'
     as _i1018;
@@ -68,7 +68,7 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final supabaseModule = _$SupabaseModule();
-    gh.factory<_i443.WordBloc>(() => _i443.WordBloc());
+    gh.factory<_i443.WordListBloc>(() => _i443.WordListBloc());
     gh.lazySingleton<_i454.Supabase>(() => supabaseModule.supabase());
     gh.factory<_i358.LoginRemoteDataSource>(
         () => _i358.LoginRemoteDataSourceImpl(supabase: gh<_i454.Supabase>()));

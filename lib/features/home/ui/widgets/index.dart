@@ -1,3 +1,10 @@
+export 'correct_word_text_widget.dart';
+export 'incorrect_word_text_widget.dart';
 export 'keyboard_row.dart';
 export 'keyboard_widget.dart';
 export 'letter_box.dart';
+export 'show_exit_popup.dart';
+export 'show_menu_dialog.dart';
+export 'show_score_is_low_error_dialog.dart';
+export 'show_word_help_dialog.dart';
+export 'show_word_info_dialog.dart';

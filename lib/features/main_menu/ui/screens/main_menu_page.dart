@@ -2,12 +2,10 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hangman_game/core/bloc/word/word_bloc.dart';
-import 'package:hangman_game/core/bloc/word/word_event.dart';
+import 'package:hangman_game/core/bloc/word_list/word_list_bloc.dart';
+import 'package:hangman_game/core/bloc/word_list/word_list_event.dart';
 import 'package:hangman_game/core/router/route.dart';
-import 'package:hangman_game/features/main_menu/domain/entities/word_type_entity.dart';
 import 'package:hangman_game/features/main_menu/index.dart';
-import 'package:hangman_game/features/main_menu/ui/widgets/show_words_dont_excist_dialog.dart';
 
 class MainMenuPage extends StatefulWidget {
   const MainMenuPage({super.key});
@@ -40,7 +38,9 @@ class _MainMenuPageState extends State<MainMenuPage> {
         if (state is LogoutSuccess) {
           context.go(AppRoute.loginPageRouteName);
         } else if (state is GetWordsSuccess) {
-          context.read<WordBloc>().add(AddWordsEvent(words: state.words));
+          context
+              .read<WordListBloc>()
+              .add(AddWordListEvent(words: state.words));
           if (state.words.isNotEmpty) {
             context.go(AppRoute.homePageRouteName);
           } else {

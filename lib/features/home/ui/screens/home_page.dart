@@ -3,15 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hangman_game/core/bloc/word/word_bloc.dart';
+import 'package:hangman_game/core/bloc/word_list/word_list_bloc.dart';
 import 'package:hangman_game/core/router/route.dart';
-import 'package:hangman_game/features/home/ui/widgets/correct_word_text_widget.dart';
-import 'package:hangman_game/features/home/ui/widgets/incorrect_word_text_widget.dart';
-import 'package:hangman_game/features/home/ui/widgets/show_exit_popup.dart';
-import 'package:hangman_game/features/home/ui/widgets/show_menu_dialog.dart';
-import 'package:hangman_game/features/home/ui/widgets/show_score_is_low_error_dialog.dart';
-import 'package:hangman_game/features/home/ui/widgets/show_word_help_dialog.dart';
-import 'package:hangman_game/features/home/ui/widgets/show_word_info_dialog.dart';
 import 'package:hangman_game/features/main_menu/domain/entities/word_entity.dart';
 
 import '../blocs/home_bloc.dart';
@@ -32,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _resetGame({int score = 50}) {
-    List<WordEntity> words = context.read<WordBloc>().state;
+    List<WordEntity> words = context.read<WordListBloc>().state;
     int rnd = Random().nextInt(words.length);
     context
         .read<HomeBloc>()
