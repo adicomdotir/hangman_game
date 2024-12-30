@@ -141,50 +141,52 @@ class _MainMenuPageState extends State<MainMenuPage> {
   }
 
   Widget _filter(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.5,
-      width: MediaQuery.of(context).size.width,
-      child: Column(
-        children: [
-          _bookSelectSection(context),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        const SizedBox(
+          height: 48,
+        ),
+        _bookSelectSection(context),
+        const SizedBox(
+          height: 24,
+        ),
+        if (selectedBook != null && selectedBook != 'All Books')
+          _lessonSelectSection(),
+        if (selectedBook != null && selectedBook != 'All Books')
           const SizedBox(
             height: 24,
           ),
-          if (selectedBook != null && selectedBook != 'All Books')
-            _lessonSelectSection(),
-          if (selectedBook != null && selectedBook != 'All Books')
-            const SizedBox(
-              height: 24,
+        _wordTypeSelectSection(),
+        const SizedBox(
+          height: 48,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            AppTextButton(
+              onPressed: () {
+                context.read<MainMenuBloc>().add(
+                      GetWordsEvent(
+                        book: _getBookName(selectedBook),
+                        lesson: _getLessonCode(selectedLesson),
+                        wordType: _getWordTypeCode(selectedWordType),
+                      ),
+                    );
+              },
+              text: 'Start',
             ),
-          _wordTypeSelectSection(),
-          const SizedBox(
-            height: 32,
-          ),
-          AppTextButton(
-            onPressed: () {
-              context.read<MainMenuBloc>().add(
-                    GetWordsEvent(
-                      book: _getBookName(selectedBook),
-                      lesson: _getLessonCode(selectedLesson),
-                      wordType: _getWordTypeCode(selectedWordType),
-                    ),
-                  );
-            },
-            text: 'Start',
-          ),
-          const SizedBox(
-            height: 24,
-          ),
-          AppTextButton(
-            onPressed: () {
-              setState(() {
-                filterGame = false;
-              });
-            },
-            text: 'Cancel',
-          ),
-        ],
-      ),
+            AppTextButton(
+              onPressed: () {
+                setState(() {
+                  filterGame = false;
+                });
+              },
+              text: 'Cancel',
+            ),
+          ],
+        ),
+      ],
     );
   }
 
@@ -197,7 +199,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
           child: const Text(
             'Book',
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 22,
             ),
           ),
         ),
@@ -210,7 +212,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
                     child: Text(
                       item,
                       style: const TextStyle(
-                        fontSize: 16,
+                        fontSize: 20,
                       ),
                     ),
                   ),
@@ -242,7 +244,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
           child: Text(
             '$selectedBook',
             style: const TextStyle(
-              fontSize: 20,
+              fontSize: 22,
             ),
           ),
         ),
@@ -254,7 +256,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
                 child: Text(
                   'All Lessons',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 20,
                   ),
                 ),
               ),
@@ -267,7 +269,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
                   child: Text(
                     item,
                     style: const TextStyle(
-                      fontSize: 16,
+                      fontSize: 20,
                     ),
                   ),
                 ),
@@ -299,7 +301,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
           child: const Text(
             'Word Type',
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 22,
             ),
           ),
         ),
@@ -311,7 +313,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
                 child: Text(
                   'All Types',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 20,
                   ),
                 ),
               ),
@@ -321,7 +323,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
                   child: Text(
                     item.name.toUpperCase(),
                     style: const TextStyle(
-                      fontSize: 16,
+                      fontSize: 20,
                     ),
                   ),
                 ),
@@ -411,7 +413,7 @@ class AppTextButton extends StatelessWidget {
       child: Text(
         text,
         style: const TextStyle(
-          fontSize: 20,
+          fontSize: 22,
         ),
       ),
     );

@@ -37,49 +37,86 @@ class _LoginPageState extends State<LoginPage> {
       },
       builder: (context, state) {
         return Scaffold(
+          backgroundColor: const Color(0xFFF8F8F8), // Light gray background
+          body: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Login Page',
+                    style: TextStyle(
+                      fontSize: 30.0,
+                      color:
+                          Color(0xFFB0BEC5), // Slightly darker background shade
+                    ),
+                  ),
+                  const SizedBox(height: 40.0),
+                  TextField(
+                    controller: _emailCtrl,
+                    decoration: const InputDecoration(
+                      labelText: 'Email',
+                      border: UnderlineInputBorder(),
+                    ),
+                  ),
+                  const SizedBox(height: 20.0),
+                  TextField(
+                    controller: _passwordCtrl,
+                    decoration: const InputDecoration(
+                      labelText: 'Password',
+                      border: UnderlineInputBorder(),
+                    ),
+                    obscureText: true,
+                  ),
+                  const SizedBox(height: 30.0),
+                  (state is LoginLoading)
+                      ? _submitButtonBuild(
+                          context: context,
+                          title: 'Loading',
+                          onTap: null,
+                        )
+                      : _submitButtonBuild(
+                          context: context,
+                          title: 'Login',
+                          onTap: () async {
+                            String email = _emailCtrl.text;
+                            String password = _passwordCtrl.text;
+                            context.read<LoginBloc>().add(
+                                  SubmitLoginEvent(
+                                    email: email,
+                                    password: password,
+                                  ),
+                                );
+                          },
+                        ),
+                ],
+              ),
+            ),
+          ),
+        );
+        return Scaffold(
           appBar: AppBar(
             title: const Text('Login Page'),
           ),
-          body: Padding(
-            padding: const EdgeInsets.all(16.0),
+          body: const Padding(
+            padding: EdgeInsets.all(16.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextField(
-                  controller: _emailCtrl,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     labelText: 'Email',
                   ),
                 ),
-                const SizedBox(height: 16.0),
+                SizedBox(height: 16.0),
                 TextField(
-                  controller: _passwordCtrl,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     labelText: 'Password',
                   ),
                   obscureText: true,
                 ),
-                const SizedBox(height: 16.0),
-                (state is LoginLoading)
-                    ? _submitButtonBuild(
-                        context: context,
-                        title: 'Loading',
-                        onTap: null,
-                      )
-                    : _submitButtonBuild(
-                        context: context,
-                        title: 'Login',
-                        onTap: () async {
-                          String email = _emailCtrl.text;
-                          String password = _passwordCtrl.text;
-                          context.read<LoginBloc>().add(
-                                SubmitLoginEvent(
-                                  email: email,
-                                  password: password,
-                                ),
-                              );
-                        },
-                      ),
+                SizedBox(height: 16.0),
               ],
             ),
           ),
@@ -95,7 +132,16 @@ class _LoginPageState extends State<LoginPage> {
   }) {
     return ElevatedButton(
       onPressed: onTap,
-      child: Text(title),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color(0xFF9E768F), // Soft purple
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+      ),
+      child: Text(
+        title,
+        style: const TextStyle(color: Colors.white),
+      ),
     );
   }
 }
