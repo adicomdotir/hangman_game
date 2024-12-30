@@ -100,11 +100,9 @@ class _MainMenuPageState extends State<MainMenuPage> {
                 filterGame = true;
               });
             },
-            child: const Text(
-              'New Game',
-              style: TextStyle(
-                fontSize: 28,
-              ),
+            child: const MenuItemWidget(
+              title: 'New Game',
+              iconData: Icons.play_circle_outline,
             ),
           ),
           const SizedBox(
@@ -114,11 +112,9 @@ class _MainMenuPageState extends State<MainMenuPage> {
             onPressed: () {
               context.push(AppRoute.leaderboardPageRouteName);
             },
-            child: const Text(
-              'Leaderboard',
-              style: TextStyle(
-                fontSize: 28,
-              ),
+            child: const MenuItemWidget(
+              title: 'Leaderboard',
+              iconData: Icons.add_chart_outlined,
             ),
           ),
           const SizedBox(
@@ -128,11 +124,9 @@ class _MainMenuPageState extends State<MainMenuPage> {
             onPressed: () {
               context.read<MainMenuBloc>().add(LogoutEvent());
             },
-            child: const Text(
-              'Logout',
-              style: TextStyle(
-                fontSize: 28,
-              ),
+            child: const MenuItemWidget(
+              title: 'Logout',
+              iconData: Icons.play_circle_outline,
             ),
           ),
         ],
@@ -393,6 +387,39 @@ class _MainMenuPageState extends State<MainMenuPage> {
     }
 
     return 0;
+  }
+}
+
+class MenuItemWidget extends StatelessWidget {
+  const MenuItemWidget({
+    super.key,
+    required this.title,
+    required this.iconData,
+  });
+
+  final String title;
+  final IconData iconData;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          iconData,
+          size: 32,
+        ),
+        const SizedBox(
+          width: 8,
+        ),
+        Text(
+          title,
+          style: const TextStyle(
+            fontSize: 28,
+          ),
+        ),
+      ],
+    );
   }
 }
 

@@ -37,7 +37,6 @@ class _LoginPageState extends State<LoginPage> {
       },
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: const Color(0xFFF8F8F8), // Light gray background
           body: Center(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -95,32 +94,6 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
         );
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text('Login Page'),
-          ),
-          body: const Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Email',
-                  ),
-                ),
-                SizedBox(height: 16.0),
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Password',
-                  ),
-                  obscureText: true,
-                ),
-                SizedBox(height: 16.0),
-              ],
-            ),
-          ),
-        );
       },
     );
   }
@@ -133,14 +106,13 @@ class _LoginPageState extends State<LoginPage> {
     return ElevatedButton(
       onPressed: onTap,
       style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xFF9E768F), // Soft purple
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
       ),
       child: Text(
         title,
-        style: const TextStyle(color: Colors.white),
+        style: const TextStyle(fontSize: 20),
       ),
     );
   }

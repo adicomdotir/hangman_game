@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
         title: 'Guess Word',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color(0xFFd3d3ff),
+            seedColor: const Color(0xFF00897B),
           ),
           useMaterial3: true,
           fontFamily: 'BubblegumSans',
