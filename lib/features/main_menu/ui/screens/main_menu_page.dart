@@ -126,7 +126,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
             },
             child: const MenuItemWidget(
               title: 'Logout',
-              iconData: Icons.play_circle_outline,
+              iconData: Icons.logout_outlined,
             ),
           ),
         ],
