@@ -14,7 +14,7 @@ class HomeRepositoryImpl extends HomeRepository {
     try {
       final res = await homeRemoteDataSource.addScore(score);
       return Right(res);
-    } catch (e) {
+    } on Exception catch (_) {
       return Left(ServerFailure());
     }
   }

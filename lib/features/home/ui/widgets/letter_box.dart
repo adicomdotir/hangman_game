@@ -4,10 +4,10 @@ import 'package:hangman_game/features/home/index.dart';
 
 class LetterBox extends StatelessWidget {
   const LetterBox({
-    super.key,
     required this.boxWidth,
     required this.model,
     required this.idx,
+    super.key,
   });
 
   final double boxWidth;

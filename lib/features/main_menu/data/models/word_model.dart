@@ -48,7 +48,9 @@ class WordModel extends WordEntity {
 
   @override
   bool operator ==(covariant WordModel other) {
-    if (identical(this, other)) return true;
+    if (identical(this, other)) {
+      return true;
+    }
 
     return other.id == id &&
         other.word == word &&

@@ -24,7 +24,7 @@ class LeaderboardRepositoryImpl extends LeaderboardRepository {
             )
             .toList(),
       );
-    } catch (e) {
+    } on Exception catch (_) {
       return Left(ServerFailure());
     }
   }

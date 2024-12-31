@@ -18,7 +18,7 @@ class LoginRepositoryImpl extends LoginRepository {
       final result =
           await remoteDataSource.signInEmailAndPassword(email, password);
       return Right(result);
-    } catch (e) {
+    } on Exception catch (_) {
       return Left(ServerFailure());
     }
   }

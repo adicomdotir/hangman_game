@@ -4,9 +4,9 @@ import 'package:hangman_game/features/home/index.dart';
 
 class KeyboardRow extends StatelessWidget {
   const KeyboardRow({
-    super.key,
     required this.boxWidth,
     required this.indexes,
+    super.key,
   });
 
   final double boxWidth;

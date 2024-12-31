@@ -368,7 +368,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
 
     try {
       return selectedLesson.split(' ')[1];
-    } catch (e) {
+    } on Exception catch (_) {
       return '0';
     }
   }
@@ -392,9 +392,9 @@ class _MainMenuPageState extends State<MainMenuPage> {
 
 class MenuItemWidget extends StatelessWidget {
   const MenuItemWidget({
-    super.key,
     required this.title,
     required this.iconData,
+    super.key,
   });
 
   final String title;
@@ -425,9 +425,9 @@ class MenuItemWidget extends StatelessWidget {
 
 class AppTextButton extends StatelessWidget {
   const AppTextButton({
-    super.key,
     required this.onPressed,
     required this.text,
+    super.key,
   });
 
   final void Function()? onPressed;

@@ -14,7 +14,7 @@ class MainMenuRepositoryImpl extends MainMenuRepository {
     try {
       await mainMenuRemoteDataSource.logout();
       return const Right(true);
-    } catch (e) {
+    } on Exception catch (_) {
       return Left(ServerFailure());
     }
   }
@@ -34,7 +34,7 @@ class MainMenuRepositoryImpl extends MainMenuRepository {
       return Right(
         res.map((model) => model.toEntity()).toList(),
       );
-    } catch (e) {
+    } on Exception catch (_) {
       return Left(ServerFailure());
     }
   }

@@ -35,7 +35,9 @@ class LeaderboardModel extends LeaderboardEntity {
 
   @override
   bool operator ==(covariant LeaderboardModel other) {
-    if (identical(this, other)) return true;
+    if (identical(this, other)) {
+      return true;
+    }
 
     return other.score == score &&
         other.userEmail == userEmail &&

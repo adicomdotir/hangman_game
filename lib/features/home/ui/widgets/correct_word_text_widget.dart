@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class CorrectWordTextWidget extends StatefulWidget {
   const CorrectWordTextWidget({
-    super.key,
     required this.word,
+    super.key,
   });
 
   final String word;
