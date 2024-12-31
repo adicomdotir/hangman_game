@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hangman_game/core/di/injectable.dart';
 import 'package:hangman_game/features/home/index.dart';
 import 'package:hangman_game/features/leaderboard/index.dart';
-import 'package:hangman_game/features/login/ui/screens/login_page.dart';
+import 'package:hangman_game/features/login/index.dart';
 import 'package:hangman_game/features/main_menu/index.dart';
 import 'package:hangman_game/features/splash/index.dart';
 

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hangman_game/features/home/ui/blocs/home_bloc.dart';
-import 'package:hangman_game/features/home/ui/widgets/letter_box.dart';
+import 'package:hangman_game/features/home/index.dart';
 
 class KeyboardRow extends StatelessWidget {
   const KeyboardRow({

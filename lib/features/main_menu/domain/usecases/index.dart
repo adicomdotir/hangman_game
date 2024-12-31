@@ -1,1 +1,2 @@
-export 'package:hangman_game/features/main_menu/domain/usecases/logout_usecase.dart';
+export 'get_words_usecase.dart';
+export 'logout_usecase.dart';

@@ -1,4 +1,4 @@
-import 'package:hangman_game/features/leaderboard/data/models/leaderboard_model.dart';
+import 'package:hangman_game/features/leaderboard/index.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 

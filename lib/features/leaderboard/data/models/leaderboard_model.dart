@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:hangman_game/features/leaderboard/domain/entities/leaderboard_entity.dart';
+import 'package:hangman_game/features/leaderboard/index.dart';
 
 class LeaderboardModel extends LeaderboardEntity {
   LeaderboardModel({

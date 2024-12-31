@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:hangman_game/core/error/failure.dart';
-import 'package:hangman_game/features/login/domain/repositories/login_repository.dart';
+import 'package:hangman_game/features/login/index.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable

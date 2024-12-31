@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hangman_game/core/bloc/word_list/word_list_bloc.dart';
 import 'package:hangman_game/core/router/route.dart';
-import 'package:hangman_game/features/main_menu/domain/entities/word_entity.dart';
+import 'package:hangman_game/features/main_menu/index.dart';
 
 import '../blocs/home_bloc.dart';
 import '../widgets/index.dart';

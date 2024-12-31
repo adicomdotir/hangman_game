@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:hangman_game/core/error/failure.dart';
-import 'package:hangman_game/features/leaderboard/data/datasources/remote/leaderboard_remote_data_source.dart';
-import 'package:hangman_game/features/leaderboard/domain/index.dart';
+import 'package:hangman_game/features/leaderboard/index.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: LeaderboardRepository)

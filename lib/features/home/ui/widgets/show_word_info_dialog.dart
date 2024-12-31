@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hangman_game/features/main_menu/domain/entities/word_entity.dart';
+import 'package:hangman_game/features/main_menu/index.dart';
 
 Future<void> showWordInfoDialog(
   context,

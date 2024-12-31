@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:hangman_game/core/error/failure.dart';
-import 'package:hangman_game/features/home/data/datasources/remote/home_remote_data_source.dart';
-import 'package:hangman_game/features/home/domain/index.dart';
+import 'package:hangman_game/features/home/index.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: HomeRepository)

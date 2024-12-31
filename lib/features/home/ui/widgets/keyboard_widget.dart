@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hangman_game/features/home/ui/widgets/keyboard_row.dart';
+import 'package:hangman_game/features/home/index.dart';
 
 class KeyboardWidget extends StatelessWidget {
   const KeyboardWidget({super.key});
