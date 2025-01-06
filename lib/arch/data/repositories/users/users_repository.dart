@@ -6,7 +6,7 @@ import '../../services/api/api_client.dart';
 
 abstract class UsersRepository {
   /// Get current user
-  Future<Result<User>> getUsers();
+  Future<Result<List<User>>> getUsers();
 }
 
 class UsersRepositoryImpl extends UsersRepository {
@@ -17,21 +17,25 @@ class UsersRepositoryImpl extends UsersRepository {
   final ApiClient _apiClient;
 
   @override
-  Future<Result<User>> getUsers() async {
+  Future<Result<List<User>>> getUsers() async {
     try {
       final result = await _apiClient.getUser();
       switch (result) {
-        case Ok<UserApiModel>():
+        case Ok<List<UserApiModel>>():
           final userApiModel = result.value;
           return Result.ok(
-            User(
-              id: userApiModel.id,
-              firstName: userApiModel.firstName,
-              lastName: userApiModel.lastName,
-            ),
+            userApiModel
+                .map(
+                  (e) => User(
+                    firstName: e.firstName,
+                    lastName: e.lastName,
+                    id: e.id,
+                  ),
+                )
+                .toList(),
           );
 
-        case Error<UserApiModel>():
+        case Error<List<UserApiModel>>():
           return Result.error(result.error);
       }
     } on Exception catch (e) {

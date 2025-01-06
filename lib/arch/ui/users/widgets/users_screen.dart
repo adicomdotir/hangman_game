@@ -42,23 +42,39 @@ class _UsersScreenState extends State<UsersScreen> {
               return Text(widget.viewModel.loadUsers.result.toString());
             }
 
-            final user = (widget.viewModel.loadUsers.result as Ok<User>).value;
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  user.id,
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
-                Text(
-                  user.firstName,
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
-                Text(
-                  user.lastName,
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
-              ],
+            final users =
+                (widget.viewModel.loadUsers.result as Ok<List<User>>).value;
+            return ListView.builder(
+              itemCount: users.length,
+              itemBuilder: (context, index) {
+                final user = users[index];
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: InkWell(
+                    onTap: () {
+                      print(user);
+                    },
+                    child: Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              user.id,
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                            Text(
+                              '${user.firstName} ${user.lastName}',
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
             );
           },
         ),

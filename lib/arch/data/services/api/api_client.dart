@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:hangman_game/core/mapper/list_mapper.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../utils/result.dart';
@@ -63,14 +64,12 @@ class ApiClient {
 
   final HttpHelper _httpHelper = HttpHelper();
 
-  Future<Result<UserApiModel>> getUser() async {
+  Future<Result<List<UserApiModel>>> getUser() async {
     try {
       final response = await _httpHelper.getData(endpoint: '/persons');
-
-      print(response.statusCode);
       if (response.statusCode == 200) {
-        final user = UserApiModel.fromMap(jsonDecode(response.body)[0]);
-        return Result.ok(user);
+        final users = mapJsonArrayToList(response.body, UserApiModel.fromMap);
+        return Result.ok(users);
       } else {
         return const Result.error(HttpException('Invalid response'));
       }

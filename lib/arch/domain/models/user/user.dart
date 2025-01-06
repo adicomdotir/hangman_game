@@ -8,4 +8,7 @@ class User {
   final String firstName;
   final String lastName;
   final String id;
+
+  @override
+  String toString() => '[$firstName, $lastName, $id]';
 }
