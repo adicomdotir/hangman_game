@@ -11,7 +11,9 @@ import '../blocs/home_bloc.dart';
 import '../widgets/index.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({required this.practiceMode, super.key});
+
+  final bool practiceMode;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -20,7 +22,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
-    _resetGame();
+    if (widget.practiceMode == true) {
+      _resetGame(score: 1000);
+    } else {
+      _resetGame();
+    }
     super.initState();
   }
 
@@ -70,7 +76,13 @@ class _HomePageState extends State<HomePage> {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-            title: const Text('Guess Word'),
+            title: const Text(
+              'Guess Word',
+              style: TextStyle(
+                fontFamily: 'Fredoka',
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             actions: [
               IconButton(
                 onPressed: () {
@@ -116,6 +128,7 @@ class _HomePageState extends State<HomePage> {
                 'Score: ${state.score}',
                 style: const TextStyle(
                   fontSize: 20,
+                  fontFamily: 'Quicksand',
                 ),
               ),
               // if (state.gameStatus == GameStatus.win)
@@ -143,12 +156,15 @@ class _HomePageState extends State<HomePage> {
                 'Guess Word ${_showWordType(state)}',
                 style: const TextStyle(
                   fontSize: 28,
+                  fontFamily: 'Fredoka',
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
                 state.wordHelpState.showMeaning ? state.word.mean : '',
                 style: const TextStyle(
                   fontSize: 18,
+                  fontFamily: 'Nunito',
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -167,6 +183,7 @@ class _HomePageState extends State<HomePage> {
               const Spacer(),
               KeyboardWidget(
                 key: GlobalKey(),
+                practiceMode: widget.practiceMode,
               ),
               const SizedBox(
                 height: 16,
@@ -180,7 +197,7 @@ class _HomePageState extends State<HomePage> {
 
   String _showWordType(HomeState state) {
     return (state.wordHelpState.showWordType)
-        ? '(${state.word.wordTypeEntity.shortName})'
+        ? '(${state.word.wordType.shortName})'
         : '';
   }
 }

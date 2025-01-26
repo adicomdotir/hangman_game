@@ -6,11 +6,13 @@ class KeyboardRow extends StatelessWidget {
   const KeyboardRow({
     required this.boxWidth,
     required this.indexes,
+    required this.practiceMode,
     super.key,
   });
 
   final double boxWidth;
   final List<int> indexes;
+  final bool practiceMode;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,7 @@ class KeyboardRow extends StatelessWidget {
             boxWidth: boxWidth,
             model: keyModels[idx],
             idx: idx,
+            practiceMode: practiceMode,
           );
         }),
       ],

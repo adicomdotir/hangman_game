@@ -64,7 +64,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       if (_checkLose(state.word.word, state.mistakeCount)) {
         emit(state.copyWith(gameStatus: GameStatus.lose));
         // TODO: Catch Error if score don't saved
-        addScoreUsecase.call(state.score);
+        if (event.practiceMode == false) {
+          addScoreUsecase.call(state.score);
+        }
       }
     }
   }

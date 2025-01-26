@@ -22,7 +22,10 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
       appBar: AppBar(
         title: const Text(
           'Leaderboard',
-          style: TextStyle(fontSize: 28),
+          style: TextStyle(
+            fontFamily: 'Fredoka',
+            fontWeight: FontWeight.bold,
+          ),
         ),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
@@ -48,20 +51,25 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                           children: [
                             Text(
                               '#',
-                              style: TextStyle(fontSize: 18),
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'Quicksand',
+                              ),
                             ),
                             SizedBox(width: 16),
                             Text(
                               'Username',
                               style: TextStyle(
                                 fontSize: 18,
-                                fontWeight: FontWeight.bold,
                               ),
                             ),
                             Spacer(),
                             Text(
-                              'High Score / Last Score',
-                              style: TextStyle(fontSize: 18),
+                              'High / Last',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'Quicksand',
+                              ),
                             ),
                           ],
                         ),
@@ -84,20 +92,25 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                         children: [
                           Text(
                             '$index.',
-                            style: const TextStyle(fontSize: 18),
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'Quicksand',
+                            ),
                           ),
                           const SizedBox(width: 16),
                           Text(
                             player.userEmail.toString(),
                             style: const TextStyle(
                               fontSize: 18,
-                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           const Spacer(),
                           Text(
                             '${player.score.toString()}/${player.lastScore.toString()}',
-                            style: const TextStyle(fontSize: 18),
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'Quicksand',
+                            ),
                           ),
                         ],
                       ),

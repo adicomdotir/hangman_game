@@ -5,10 +5,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
 
-import 'package:hangman_game/features/leaderboard/data/datasources/remote/leaderboard_remote_data_source.dart'
-    as _i2;
-import 'package:hangman_game/features/leaderboard/data/models/leaderboard_model.dart'
-    as _i4;
+import 'package:hangman_game/features/leaderboard/index.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -34,13 +31,13 @@ class MockLeaderboardRemoteDataSource extends _i1.Mock
   }
 
   @override
-  _i3.Future<List<_i4.LeaderboardModel>> fetchTopScores() =>
+  _i3.Future<List<_i2.LeaderboardModel>> fetchTopScores() =>
       (super.noSuchMethod(
         Invocation.method(
           #fetchTopScores,
           [],
         ),
-        returnValue: _i3.Future<List<_i4.LeaderboardModel>>.value(
-            <_i4.LeaderboardModel>[]),
-      ) as _i3.Future<List<_i4.LeaderboardModel>>);
+        returnValue: _i3.Future<List<_i2.LeaderboardModel>>.value(
+            <_i2.LeaderboardModel>[]),
+      ) as _i3.Future<List<_i2.LeaderboardModel>>);
 }

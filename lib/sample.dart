@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
               ?.copyWith(color: Colors.red),
         ).apply(),
         useMaterial3: true,
-        fontFamily: 'BubblegumSans',
+        fontFamily: 'CustomFont',
       ),
       debugShowCheckedModeBanner: false,
       home: const MaterialApp(

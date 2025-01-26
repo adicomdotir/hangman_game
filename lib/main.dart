@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
             seedColor: const Color(0xFF00897B),
           ),
           useMaterial3: true,
-          fontFamily: 'BubblegumSans',
+          fontFamily: 'Poppins',
         ),
         debugShowCheckedModeBanner: false,
       ),

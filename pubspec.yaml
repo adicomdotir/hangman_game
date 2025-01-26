@@ -33,7 +33,23 @@ flutter:
   uses-material-design: true
 
   fonts:
-    - family: BubblegumSans
+    # Title or Headers
+    - family: Fredoka
       fonts:
-        - asset: assets/fonts/bubblegum_sans/BubblegumSans-Regular.ttf
+        - asset: assets/fonts/Fredoka/Fredoka-Regular.ttf
+          weight: 400
+    # Gameplay or Letters
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins/Poppins-Regular.ttf
+          weight: 400
+    # Hints or Instructions
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito/Nunito-Regular.ttf
+          weight: 400
+    # Score or Timer
+    - family: Quicksand
+      fonts:
+        - asset: assets/fonts/Quicksand/Quicksand-Regular.ttf
           weight: 400

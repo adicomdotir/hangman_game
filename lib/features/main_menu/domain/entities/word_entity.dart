@@ -8,7 +8,7 @@ class WordEntity {
       bookLevel: '0',
       bookLesson: '0',
       typeId: 0,
-      wordTypeEntity: WordTypeEntity(id: 0, name: '', shortName: ''),
+      wordType: WordTypeEntity(id: 0, name: '', shortName: ''),
       mean: 'mean',
     );
   }
@@ -19,7 +19,7 @@ class WordEntity {
     required this.bookLevel,
     required this.bookLesson,
     required this.typeId,
-    required this.wordTypeEntity,
+    required this.wordType,
     required this.mean,
   });
   final int id;
@@ -27,7 +27,7 @@ class WordEntity {
   final String bookLevel;
   final String bookLesson;
   final int typeId;
-  final WordTypeEntity wordTypeEntity;
+  final WordTypeEntity wordType;
   final String mean;
 
   WordEntity copyWith({
@@ -45,7 +45,7 @@ class WordEntity {
       bookLevel: bookLevel ?? this.bookLevel,
       bookLesson: bookLesson ?? this.bookLesson,
       typeId: typeId ?? this.typeId,
-      wordTypeEntity: wordTypeEntity ?? this.wordTypeEntity,
+      wordType: wordTypeEntity ?? wordType,
       mean: mean ?? this.mean,
     );
   }

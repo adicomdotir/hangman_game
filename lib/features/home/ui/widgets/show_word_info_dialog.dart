@@ -46,7 +46,7 @@ Future<void> showWordInfoDialog(
           ),
           Center(
             child: Text(
-              word.wordTypeEntity.name.toUpperCase(),
+              word.wordType.name.toUpperCase(),
               style: const TextStyle(
                 fontSize: 20,
               ),

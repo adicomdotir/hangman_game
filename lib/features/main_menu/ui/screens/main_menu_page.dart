@@ -7,6 +7,8 @@ import 'package:hangman_game/core/bloc/word_list/word_list_event.dart';
 import 'package:hangman_game/core/router/route.dart';
 import 'package:hangman_game/features/main_menu/index.dart';
 
+import '../../../common/ui/widgets/app_text_button.dart';
+
 class MainMenuPage extends StatefulWidget {
   const MainMenuPage({super.key});
 
@@ -58,7 +60,13 @@ class _MainMenuPageState extends State<MainMenuPage> {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-            title: const Text('Main Menu'),
+            title: const Text(
+              'Main Menu',
+              style: TextStyle(
+                fontFamily: 'Fredoka',
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
           body: _body(context, state),
         );
@@ -103,6 +111,18 @@ class _MainMenuPageState extends State<MainMenuPage> {
             child: const MenuItemWidget(
               title: 'New Game',
               iconData: Icons.play_circle_outline,
+            ),
+          ),
+          const SizedBox(
+            height: 24,
+          ),
+          TextButton(
+            onPressed: () {
+              context.push(AppRoute.practiceModePageRouteName);
+            },
+            child: const MenuItemWidget(
+              title: 'Practice Mode',
+              iconData: Icons.fitness_center_outlined,
             ),
           ),
           const SizedBox(
@@ -416,33 +436,11 @@ class MenuItemWidget extends StatelessWidget {
           title,
           style: const TextStyle(
             fontSize: 28,
+            fontFamily: 'Fredoka',
+            fontWeight: FontWeight.bold,
           ),
         ),
       ],
-    );
-  }
-}
-
-class AppTextButton extends StatelessWidget {
-  const AppTextButton({
-    required this.onPressed,
-    required this.text,
-    super.key,
-  });
-
-  final void Function()? onPressed;
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: onPressed,
-      child: Text(
-        text,
-        style: const TextStyle(
-          fontSize: 22,
-        ),
-      ),
     );
   }
 }

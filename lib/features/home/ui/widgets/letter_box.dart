@@ -7,12 +7,14 @@ class LetterBox extends StatelessWidget {
     required this.boxWidth,
     required this.model,
     required this.idx,
+    required this.practiceMode,
     super.key,
   });
 
   final double boxWidth;
   final KeyboardModel model;
   final int idx;
+  final bool practiceMode;
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +22,13 @@ class LetterBox extends StatelessWidget {
       onTap: () {
         if (context.read<HomeBloc>().state.gameStatus == GameStatus.normal &&
             model.isActive) {
-          context
-              .read<HomeBloc>()
-              .add(TapLetterEvent(letter: model.letter, letterIndex: idx));
+          context.read<HomeBloc>().add(
+                TapLetterEvent(
+                  letter: model.letter,
+                  letterIndex: idx,
+                  practiceMode: practiceMode,
+                ),
+              );
         }
       },
       child: Container(

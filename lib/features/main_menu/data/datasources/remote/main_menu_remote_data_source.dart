@@ -1,4 +1,4 @@
-import 'package:hangman_game/features/main_menu/data/models/word_model.dart';
+import 'package:hangman_game/features/common/data/models/word_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
