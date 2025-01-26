@@ -4,6 +4,18 @@ import 'package:hangman_game/features/common/data/models/word_type_model.dart';
 import 'package:hangman_game/features/main_menu/domain/entities/word_entity.dart';
 
 class WordModel extends WordEntity {
+  factory WordModel.fromEntiry(WordEntity wordEntity) {
+    return WordModel(
+      id: wordEntity.id,
+      word: wordEntity.word,
+      bookLevel: wordEntity.bookLevel,
+      bookLesson: wordEntity.bookLesson,
+      typeId: wordEntity.typeId,
+      wordType: wordEntity.wordType,
+      mean: wordEntity.mean,
+    );
+  }
+
   factory WordModel.fromMap(Map<String, dynamic> map) {
     return WordModel(
       id: map['id'].toInt() as int,

@@ -88,7 +88,10 @@ class _PracticeModePageState extends State<PracticeModePage> {
             return Chip(
               label: Text(e.word.toUpperCase()),
               deleteIcon: const Icon(Icons.close, size: 18),
-              onDeleted: () {},
+              onDeleted: () {
+                BlocProvider.of<PracticeBloc>(context)
+                    .add(DeleteWordEvent(e.id));
+              },
             );
           },
         ),

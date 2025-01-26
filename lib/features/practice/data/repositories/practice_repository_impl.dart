@@ -16,4 +16,10 @@ class PracticeRepositoryImpl extends PracticeRepository {
     final res = databaseDataSource.fetchWords();
     return Right(res);
   }
+
+  @override
+  Future<Either<Failure, void>> deleteWord(int id) async {
+    databaseDataSource.deleteWord(id);
+    return const Right(null);
+  }
 }

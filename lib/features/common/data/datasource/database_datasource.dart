@@ -2,7 +2,7 @@ import 'package:injectable/injectable.dart';
 
 import '../models/index.dart';
 
-@injectable
+@singleton
 class DatabaseDataSource {
   // Todo: implement with sqlite
   final List<WordModel> _words = [
@@ -25,9 +25,9 @@ class DatabaseDataSource {
     _words.add(wordModel);
   }
 
-  void deleteWord(WordModel wordModel) {
+  void deleteWord(int id) {
     int index = _words.indexWhere(
-      (word) => word.id == wordModel.id,
+      (word) => word.id == id,
     );
     _words.removeAt(index);
   }

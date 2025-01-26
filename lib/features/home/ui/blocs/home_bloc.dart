@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hangman_game/features/home/domain/usecases/add_word_to_database_usecase.dart';
 import 'package:hangman_game/features/home/index.dart';
 import 'package:hangman_game/features/main_menu/index.dart';
 import 'package:injectable/injectable.dart';
@@ -10,7 +11,8 @@ part 'home_state.dart';
 
 @injectable
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  HomeBloc({required this.addScoreUsecase})
+  HomeBloc(
+      {required this.addScoreUsecase, required this.addWordToDatabaseUseCase})
       : super(HomeState.init(score: 50, wordEntity: WordEntity.empty())) {
     on<TapLetterEvent>(_tapLetterEvent);
 
@@ -28,6 +30,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   final AddScoreUsecase addScoreUsecase;
+  final AddWordToDatabaseUseCase addWordToDatabaseUseCase;
 
   FutureOr<void> _tapLetterEvent(TapLetterEvent event, emit) {
     String letter = event.letter;
@@ -66,6 +69,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         // TODO: Catch Error if score don't saved
         if (event.practiceMode == false) {
           addScoreUsecase.call(state.score);
+          addWordToDatabaseUseCase.call(state.word);
         }
       }
     }
