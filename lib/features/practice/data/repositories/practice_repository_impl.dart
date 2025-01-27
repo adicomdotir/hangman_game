@@ -13,12 +13,23 @@ class PracticeRepositoryImpl extends PracticeRepository {
 
   @override
   Future<Either<Failure, List<WordEntity>>> getWords() async {
-    final res = databaseDataSource.fetchWords();
-    return Right(res);
+    if (!databaseDataSource.isOpen()) {
+      await databaseDataSource.open();
+    }
+    final res = await databaseDataSource.fetchWords();
+    final mappedResult = res
+        .map(
+          (e) => e.toEntity(),
+        )
+        .toList();
+    return Right(mappedResult);
   }
 
   @override
   Future<Either<Failure, void>> deleteWord(int id) async {
+    if (!databaseDataSource.isOpen()) {
+      await databaseDataSource.open();
+    }
     databaseDataSource.deleteWord(id);
     return const Right(null);
   }
