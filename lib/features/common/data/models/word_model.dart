@@ -45,9 +45,12 @@ class WordModel extends WordEntity {
     return <String, dynamic>{
       'id': id,
       'word': word,
-      'book_level': bookLevel,
-      'book_lesson': bookLesson,
-      'type_id': typeId,
+      'bookLevel': bookLevel,
+      'bookLesson': bookLesson,
+      'typeId': typeId,
+      'wordType':
+          (wordType as WordTypeModel).toMap(), // Convert WordTypeModel to map
+      'mean': mean,
     };
   }
 
